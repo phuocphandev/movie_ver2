@@ -18,7 +18,17 @@
     // "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    //Import vscode: giup import gon hon
+    "baseUrl": "src",
+    "paths": {
+      "assets": ["assets"],
+      "components": ["components"],
+      "constants":["constants"],
+      "pages":["pages"],
+      "router": ["router"],
+      "store": ["store"],
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

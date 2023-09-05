@@ -7,7 +7,7 @@ const NavBar = () => {
     setIsToggled(!isToggled); //Trả về gtrị opposite
   };
   return (
-    <nav className="bg-[#303030] dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 relative">
+    <nav className="bg-transparent fixed w-full z-20 top-0 left-0 h-[10vh] ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" className="flex items-center">
           <img
@@ -65,7 +65,7 @@ const NavBar = () => {
         >
           <ul
             className={cn(
-              "transition-all ease-in-out overflow-hidden flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#424242] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#303030] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700",
+              "transition-all ease-in-out overflow-hidden flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#424242] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent",
               { hidden: isToggled }
             )}
             style={{ borderColor: "#e3b5d9"}}

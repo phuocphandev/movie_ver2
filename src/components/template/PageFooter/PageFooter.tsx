@@ -1,6 +1,6 @@
 const PageFooter = () => {
   return (
-    <div className="absolute p-5 bottom-0 w-full text-white bg-[#303030] flex justify-evenly"
+    <div className="absolute p-5 bottom-0 w-full text-white bg-transparent flex justify-evenly h-[20vh] "
     style={{backgroundImage: 'img(./image/footer/Rectangle.png)'}}
     >
       <div className="flex flex-col">
