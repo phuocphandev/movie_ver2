@@ -28,6 +28,7 @@
       "pages":["pages"],
       "router": ["router"],
       "store": ["store"],
+      "types" : ["types"]
     }
   },
   "include": ["src"],
