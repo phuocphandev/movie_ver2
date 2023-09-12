@@ -1,17 +1,19 @@
-import { Outlet } from "react-router-dom";
-import NavBar from "../template/PageHeader/NavBar";
-import PageFooter from "../template/PageFooter/PageFooter";
+import { Navigate, Outlet } from "react-router-dom";
+import styles from "./index.module.scss";
+import cn from "classnames";
+import { useAuth } from "hooks/useAuth";
 
 export const AuthLayout = () => {
+  const { user } = useAuth();
+  //1 hook thì gọi hook khác, function k gọi hook
+  if (user) {
+    return <Navigate to="/"  />; //return về một component
+  }
   return (
-    <div className="bg-[#303030] absolute h-full w-full">
-      {/* 10vh  */}
-        <NavBar />
-      <div className="absolute h-[70vh] border border-white w-full top-[10vh]">
-        <Outlet />
-      </div>
-      {/* 20vh */}
-        <PageFooter />
+    <div className={cn(styles.account, "flex items-center")}>
+      <div className={styles.accountLeft}></div>
+      <Outlet />
+      <div className={styles.accountRight}></div>
     </div>
   );
 };

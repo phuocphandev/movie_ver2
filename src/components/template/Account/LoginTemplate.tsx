@@ -1,8 +1,40 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.scss";
-import PATH from "constants/config";
+import PATH from "constant/config";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema, LoginSchemaType } from "schema";
+import { useAppDispatch } from "store";
+import { loginThunk } from "store/quanLyNguoiDung/thunk";
+import { toast } from "react-toastify";
+import Input from "components/ui/Input";
+
 export const LoginTemplate = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<LoginSchemaType>({
+    mode: "onChange",
+    resolver: zodResolver(LoginSchema),
+  });
+  const onSubmit: SubmitHandler<LoginSchemaType> = async (value) => {
+    dispatch(loginThunk(value))
+      .unwrap()
+      .then(() => {
+        toast.success("Đăng nhập thành công!");
+        navigate("/");
+      })
+      .catch((err)=>{
+        console.log(err);
+        toast.error(err?.response?.data?.content);
+      }) 
+    };
+
   return (
     <div className={styles.inputFormLogin}>
       <div className={styles.formLogo}>
@@ -70,17 +102,9 @@ export const LoginTemplate = () => {
           <p className="text-white">Or register with email</p>
           <div className="bg-white w-1/5 h-[1px]"></div>
         </div>
-        <form action="">
-          <input
-            type="text"
-            placeholder="Tài Khoản"
-            className="outline-none block w-full p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
-          />
-          <input
-            type="text"
-            placeholder="Mat Khau"
-            className="mt-5 outline-none block w-full p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
-          />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input register={register} name="taiKhoan" type="text" placeholder="Username" error={errors?.taiKhoan?.message} />
+          <Input register={register} name="matKhau" type="password" placeholder="Password" error={errors?.matKhau?.message} />
           <div className="mt-10">
             <button className="text-white bg-[#304ffe] hover:bg-red-800 font-medium rounded-full text-sm text-center mr-2 mb-2 transition-all ease-in-out px-5 py-[16px] text-20 w-full">
               Sign In

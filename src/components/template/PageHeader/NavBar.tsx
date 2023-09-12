@@ -1,13 +1,16 @@
 import { useState } from "react";
 import cn from "classnames";
+import { useNavigate } from "react-router-dom";
+import PATH from '../../../constant/config';
 
-const NavBar = () => {
+export const NavBar = () => {
+  const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(false);
   const handleIsToggled = () => {
     setIsToggled(!isToggled); //Trả về gtrị opposite
   };
   return (
-    <nav className="bg-transparent fixed w-full z-20 top-0 left-0 h-[10vh] ">
+    <nav className="bg-transparent w-full z-20 top-0 left-0 h-[6vh]">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" className="flex items-center">
           <img
@@ -23,6 +26,7 @@ const NavBar = () => {
           <button
             type="button"
             className="text-white transition-all ease-in-out hover:bg-[#C5CAE9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2 ml-2 md:mr-2 md:ml-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-[#C5CAE9]"
+            onClick={() => navigate(PATH.login)}
           >
             Login
           </button>
@@ -30,6 +34,7 @@ const NavBar = () => {
           <button
             type="button"
             className="text-white transition-all ease-in-out hover:bg-[#C5CAE9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2 ml-2 md:mr-2 md:ml-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-[#C5CAE9]"
+            onClick={() => navigate(PATH.register)}
           >
             Register
           </button>

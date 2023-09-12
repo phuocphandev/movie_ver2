@@ -1,15 +1,16 @@
 import { RouteObject } from "react-router-dom";
-import AuthLayout from "../components/layouts/AuthLayout";
-import Account from "pages/account/Account";
 import { Login, Register } from "pages";
-import PATH from "constants/config";
-import Home from "pages/account/Home";
+import PATH from "constant/config";
+import Home from "pages/Home";
+import AuthLayout from "components/layouts/AuthLayout";
+import HomeLayout from "components/layouts/HomeLayout";
+
 
 // import Register from "pages/account/Register";
 
 export const router: RouteObject[] = [
   {
-    element: <Account />,
+    element: <AuthLayout />,
     children: [
       { 
         element: <Login />,
@@ -24,7 +25,7 @@ export const router: RouteObject[] = [
   },
 
   {
-    element: <AuthLayout />,
+    element: <HomeLayout/>,
     children: [
       {
         element:<Home/>,

@@ -24,10 +24,13 @@
     "paths": {
       "assets": ["assets"],
       "components": ["components"],
-      "constants":["constants"],
+      "constant":["constant"],
+      "hooks": ["hooks"],
       "pages":["pages"],
       "router": ["router"],
+      "schema": ["schema"],
       "store": ["store"],
+      "services": ["services"],
       "types" : ["types"]
     }
   },

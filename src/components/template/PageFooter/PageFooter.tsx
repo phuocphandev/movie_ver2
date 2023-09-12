@@ -1,6 +1,6 @@
-const PageFooter = () => {
+export const PageFooter = () => {
   return (
-    <div className="absolute p-5 bottom-0 w-full text-white bg-transparent flex justify-evenly h-[20vh] "
+    <div className="relative text-white bg-transparent flex justify-center h-full w-full py-5 gap-[5rem] pl-[2rem] "
     style={{backgroundImage: 'img(./image/footer/Rectangle.png)'}}
     >
       <div className="flex flex-col">

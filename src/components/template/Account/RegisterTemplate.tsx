@@ -1,9 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.scss";
-import PATH from "constants/config";
+import PATH from "constant/config";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { RegisterSchema, RegisterSchemaType } from "schema/RegisterSchema";
+import { quanLyNguoiDung } from "services";
+import { toast } from "react-toastify";
+import Input from "components/ui/Input";
 
 export const RegisterTemplate = () => {
-    const navigate = useNavigate()
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<RegisterSchemaType>({
+    mode: "onChange",
+    resolver: zodResolver(RegisterSchema),
+  });
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<RegisterSchemaType> = async (value) => {
+    try {
+      await quanLyNguoiDung.register(value);
+      toast.success("Create account success!");
+      navigate(PATH.login);
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.content);
+    }
+  };
+
   return (
     <div className={styles.inputFormRegister}>
       <div className={styles.formLogo}>
@@ -25,12 +50,17 @@ export const RegisterTemplate = () => {
       </div>
       <div className={styles.formContainer}>
         {/* Title  */}
-        <div className="px-3 flex justify-between" style={{flexWrap:"wrap"}}>
+        <div className="px-3 flex justify-between" style={{ flexWrap: "wrap" }}>
           <h1 className="text-white text-3xl font-bold font-600 ">Register</h1>
-          <span className="text-white flex items-center gap-1 hover:text-blue-400 transition-all ease-in-out cursor-pointer" 
-          onClick={()=>navigate(PATH.login)}
+          <span
+            className="text-white flex items-center gap-1 hover:text-blue-400 transition-all ease-in-out cursor-pointer"
+            onClick={() => navigate(PATH.login)}
           >
-            <img src="./image/LogiAndRegis/navigation.png" alt="arrow" className="h-5" />
+            <img
+              src="./image/LogiAndRegis/navigation.png"
+              alt="arrow"
+              className="h-5"
+            />
             <p>Already have account?</p>
           </span>
         </div>
@@ -66,42 +96,59 @@ export const RegisterTemplate = () => {
           <p className="text-white">Or register with email</p>
           <div className="bg-white w-1/5 h-[1px]"></div>
         </div>
-        <form action="">
-          <input
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            register={register}
+            name="taiKhoan"
             type="text"
-            placeholder="Tài Khoản"
-            className="outline-none block w-full p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Username"
+            error={errors?.taiKhoan?.message}
           />
-          <input
-            type="text"
-            placeholder="Mật Khẩu"
-            className="mt-5 outline-none block w-full p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
+          <Input
+            register={register}
+            name="matKhau"
+            type="password"
+            placeholder="Password"
+            error={errors?.matKhau?.message}
           />
-          <input
+          <Input
+            register={register}
+            name="email"
             type="text"
             placeholder="Email"
-            className="mt-5 outline-none block w-full p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
+            error={errors?.email?.message}
           />
-          <div className="flex gap-5">
-            <input
-              type="text"
-              placeholder="Số Điện Thoại"
-              className="mt-5 outline-none block w-1/2 p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
-            />
-            <input
-              type="text"
-              placeholder="Mã Nhóm"
-              className="mt-5 outline-none block w-1/2 p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
-            />
+          <div className="flex justify-between gap-5">
+            <div className="flex flex-col w-1/2">
+              <Input
+                register={register}
+                name="soDt"
+                type="text"
+                placeholder="Phone Number"
+                error={errors?.soDt?.message}
+              />
+            </div>
+            <div className="flex flex-col w-1/2">
+              <Input
+                register={register}
+                name="maNhom"
+                type="text"
+                placeholder="Group ID"
+                error={errors?.maNhom?.message}
+              />
+            </div>
           </div>
-          <input
+
+          <Input
+            register={register}
+            name="hoTen"
             type="text"
-            placeholder="Họ Tên"
-            className="mt-5 outline-none block w-full p-4 text-white border border-white-300 rounded-lg bg-[#333] focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Fullname"
+            error={errors?.hoTen?.message}
           />
           <div className="mt-10">
             <button className="text-white bg-[#304ffe] hover:bg-red-800 font-medium rounded-full text-sm text-center mr-2 mb-2 transition-all ease-in-out px-5 py-[16px] text-20 w-full">
-              Sign In
+              Register
             </button>
           </div>
         </form>
