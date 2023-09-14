@@ -1,7 +1,10 @@
+import { AdminNavbar } from "components"
 
 export const AdminLayout = () => {
   return (
-    <div>AdminLayout</div>
+    <div>
+      <AdminNavbar/>
+    </div>
   )
 }
 
