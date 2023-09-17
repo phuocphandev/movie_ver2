@@ -11,6 +11,7 @@ export const apiInstance = (config?: CreateAxiosDefaults) => {
       ...config,
       headers: {
         TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer" + " " + localStorage.getItem("USER"),
       } as unknown as AxiosRequestHeaders,
     };
   });

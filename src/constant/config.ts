@@ -7,7 +7,8 @@ export const PATH = {
     adminFilmManage: '/admin/film/manage',
     adminFilmAdd: '/admin/film/addnew',
     //userAdmin
-    adminUser:'/admin/user'
+    adminUser:'/admin/user',
+    account:'/account',
 }
 
 export default PATH

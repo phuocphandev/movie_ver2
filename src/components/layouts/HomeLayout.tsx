@@ -7,7 +7,6 @@ export const HomeLayout = () => {
     <div className="bg-[#303030] h-full w-full flex flex-col gap-10">
       <NavBar />
       
-
       <div className="bg-[rgba(238,95,109,0.8)] rounded-3xl m-auto px-10 py-15">
         <Outlet />
       </div>

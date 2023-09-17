@@ -1,11 +1,12 @@
 import { RouteObject } from "react-router-dom";
-import { Login, Register } from "pages";
+import { AccountInfo, Login, Register } from "pages";
 import PATH from "constant/config";
 import Home from "pages/Home";
 import AuthLayout from "components/layouts/AuthLayout";
 import HomeLayout from "components/layouts/HomeLayout";
 import { AdminLayout, FilmAdd, FilmManage } from "components";
 import { AdminFilm, AdminUser } from "pages/admin";
+import AccountInTemplate from "components/template/Account/AccountInTemplate";
 
 
 // import Register from "pages/account/Register";
@@ -23,9 +24,13 @@ export const router: RouteObject[] = [
         element: <Register />,
         path: PATH.register
       },
+
     ],
   },
-
+  {
+    element: <AccountInTemplate/>,
+    path: PATH.account
+  },
   {
     element: <HomeLayout />,
     children: [

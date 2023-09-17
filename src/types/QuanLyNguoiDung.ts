@@ -7,3 +7,10 @@ export type User = {
   soDT: string;
   taiKhoan: string;
 };
+export type UserInfo = User & {
+  loaiNguoiDung: {
+      maLoaiNguoiDung: string
+      tenLoai: string
+  }
+  thongTinDatVe: []
+}

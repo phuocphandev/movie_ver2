@@ -5,7 +5,7 @@ import React from 'react'
 type CardObject={
     (props: CardPropsA): JSX.Element
     Meta: React.FC<CardMetaProps>
-    Grid: React.FC<CardGridProps>
+    Grid: React.FC<CardGridProps> 
 }
 export const Card:CardObject = (props) => {
   return (
@@ -14,4 +14,5 @@ export const Card:CardObject = (props) => {
 }
 Card.Meta=CardA.Meta
 Card.Grid=CardA.Grid
+
 export default Card
