@@ -14,13 +14,24 @@ export const quanLyRapThunk = createAsyncThunk(
 );
 export const quanLyCumRapThunk = createAsyncThunk(
   "quanLyRap/quanLyCumRapThunk",
-  async (payload:string, { rejectWithValue }) => {
+  async (payload: string, { rejectWithValue }) => {
     try {
-     if (payload){
-         const data = await QuanLyRap.GetCumRap(payload);
-         return data.data.content;
-     }
-     return undefined
+      if (payload) {
+        const data = await QuanLyRap.GetCumRap(payload);
+        return data.data.content;
+      }
+      return undefined;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+export const quanLyLichChieuTheoHeThongThunk = createAsyncThunk(
+  "quanLyRap/quanLyLichChieuTheoHeThongThunk",
+  async (payload: string, { rejectWithValue }) => {
+    try {
+      const data = await QuanLyRap.GetLichTheoHeThong(payload);
+      return data.data.content;
     } catch (error) {
       rejectWithValue(error);
     }

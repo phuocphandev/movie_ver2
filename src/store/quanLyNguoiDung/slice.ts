@@ -29,7 +29,7 @@ const quanLyNguoiDungSlice = createSlice({
         state.accessToken = payload.accessToken;
         if (payload) {
           localStorage.setItem("USER", payload.accessToken);
-          console.log("payload", payload);
+          // console.log("payload", payload);
           state.user = payload;
         }
       })

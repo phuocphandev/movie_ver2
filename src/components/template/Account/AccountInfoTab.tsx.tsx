@@ -32,9 +32,8 @@ const AccountInfoTab = () => {
     );
   }, [user, reset]);
   const onSubmit:SubmitHandler<AccountSchemaType> = (value)=>{
-    dispatch(updateUserThunk(value)).unwrap().then((res) => {
-        toast.success("Update success");
-            
+    dispatch(updateUserThunk(value)).unwrap().then(() => {
+        toast.success("Update success");    
           })
           .catch((err) => {
            console.log(err);

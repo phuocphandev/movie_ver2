@@ -1,37 +1,50 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { quanLyCumRapThunk, quanLyRapThunk } from "./thunk"
-import { CumRapInfo, RapSys } from "types/QuanLyRap"
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  quanLyCumRapThunk,
+  quanLyLichChieuTheoHeThongThunk,
+  quanLyRapThunk,
+} from "./thunk";
+import { CumRapInfo, LichChieuTheoHeThong, RapSys } from "types/QuanLyRap";
 
 type QuanLyRapInitialState = {
-    heThongRap?:RapSys[],
-    cumRap?:CumRapInfo[],
-    tenHeThongRapHienTai?: any,
+  heThongRap?: RapSys[];
+  cumRap?: CumRapInfo[];
+  tenHeThongRapHienTai?: any;
+  tenCumRapHientai?: any;
+  lichChieuTheoHeThong?: LichChieuTheoHeThong[];
 };
-const initialState:QuanLyRapInitialState = {
-    heThongRap:[],
-    cumRap:[],
-    tenHeThongRapHienTai:"BHDStar"
-}
+const initialState: QuanLyRapInitialState = {
+  heThongRap: [],
+  cumRap: [],
+  tenHeThongRapHienTai: "BHDStar",
+};
 export const quanLyRapSlice = createSlice({
-    name:'quanLyRap',
-    initialState,
-    reducers:{
-        LuuMaRap:(state,actions)=>{
-            state.tenHeThongRapHienTai = actions.payload
-        }
-
+  name: "quanLyRap",
+  initialState,
+  reducers: {
+    LuuMaRap: (state, actions) => {
+      state.tenHeThongRapHienTai = actions.payload;
     },
-    extraReducers:(builder)=>{
-        builder.addCase(quanLyRapThunk.fulfilled,(state,{payload})=>
-        {
-            console.log(payload)
-            state.heThongRap = payload;
-        })
-        .addCase(quanLyCumRapThunk.fulfilled,(state,{payload})=>{
-            state.cumRap = payload;
-          })
-    }
-    
-
-})
-export const {reducer:quanLyRapReducer,actions:quanLyRapActions}=quanLyRapSlice;
+    LuuCumRap: (state, actions) => {
+      state.tenCumRapHientai = actions.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(quanLyRapThunk.fulfilled, (state, { payload }) => {
+        // console.log(payload)
+        state.heThongRap = payload;
+      })
+      .addCase(quanLyCumRapThunk.fulfilled, (state, { payload }) => {
+        state.cumRap = payload;
+      })
+      .addCase(
+        quanLyLichChieuTheoHeThongThunk.fulfilled,
+        (state, { payload }) => {
+          state.lichChieuTheoHeThong = payload;
+        }
+      );
+  },
+});
+export const { reducer: quanLyRapReducer, actions: quanLyRapActions } =
+  quanLyRapSlice;

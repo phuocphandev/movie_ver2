@@ -2,12 +2,12 @@ import { useState } from "react";
 import cn from "classnames";
 import { useNavigate } from "react-router-dom";
 import PATH from "../../../constant/config";
-import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Popover from "components/ui/Popover";
 import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { quanLyNguoiDungActions } from "store/quanLyNguoiDung/slice";
+import { Avatar } from "components/ui";
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -17,11 +17,12 @@ export const NavBar = () => {
   };
   const dispatch = useDispatch()
   const {accessToken,user} = useAuth()
-  console.log('user:', user);
+  // console.log('user:', user);
+  
   return (
     <nav className="bg-transparent w-full z-20 top-0 left-0 h-[6vh]">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <a href="#" className="flex items-center">
           <img
             src="../../../../image/navbar/Logo.png"
             className="h-10 mr-2 pt-1"
