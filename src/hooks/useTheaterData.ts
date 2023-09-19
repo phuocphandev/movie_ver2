@@ -8,6 +8,8 @@ export const useTheaterData = () => {
     tenHeThongRapHienTai,
     lichChieuTheoHeThong,
     tenCumRapHientai,
+    ngayHienTai,
+    DSPhimTheoNgay
   } = useSelector((state: RootState) => state.quanLyRap);
   return {
     heThongRap,
@@ -15,5 +17,7 @@ export const useTheaterData = () => {
     tenHeThongRapHienTai,
     lichChieuTheoHeThong,
     tenCumRapHientai,
+    ngayHienTai,
+    DSPhimTheoNgay
   };
 };

@@ -8,9 +8,9 @@ export const QuanLyRap = {
   HeThongRap: () => api.get<ApiResponse<RapSys[]>>("/LayThongTinHeThongRap"),
   GetCumRap: (payload: string) =>
     api.get<ApiResponse<CumRapInfo[]>>(
-      `/LayThongTinCumRapTheoHeThong?maHeThongRap=${payload}&maNhom=GP09`
+      `/LayThongTinCumRapTheoHeThong?maHeThongRap=${payload}`
     ),
   GetLichTheoHeThong: (payload: string) =>
-    api.get<ApiResponse<LichChieuTheoHeThong[]>>(`LayThongTinLichChieuHeThongRap?maHeThongRap=${payload}`),
+    api.get<ApiResponse<LichChieuTheoHeThong[]>>(`LayThongTinLichChieuHeThongRap?maHeThongRap=${payload}&maNhom=GP09`),
     // Nếu bị lỗi Type 'WritableDraft<LichChieuTheoHeThong>' is not assignable to type 'ReactNode'thì thêm cái [] sau type generic
 };

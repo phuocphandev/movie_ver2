@@ -8,24 +8,17 @@ import { quanLyPhimThunk } from "store/quanLyPhim/thunk";
 import cn from "classnames";
 import style from "./index.module.scss";
 import { useTheaterData } from "hooks/useTheaterData";
-
 import {
   quanLyCumRapThunk,
   quanLyLichChieuTheoHeThongThunk,
 } from "store/quanLyRap/thunk";
 import { quanLyRapActions } from "store/quanLyRap/slice";
 import DatePicker from "components/ui/DatePicker";
+import { InfoPhim, gioChieu } from "types/QuanLyRap";
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch();
   const dispatchOrigin = useDispatch();
-
-  // DatePicker
-  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log("date", date);
-    console.log("dateString", dateString);
-  };
-
   const { movieList, isFetchingMovieList } = useSelector(
     (state: RootState) => state.quanLyPhim
   );
@@ -35,8 +28,9 @@ export const HomeTemplate = () => {
     tenHeThongRapHienTai,
     lichChieuTheoHeThong,
     tenCumRapHientai,
+    ngayHienTai,
+    DSPhimTheoNgay,
   } = useTheaterData();
-  // console.log("tenhethong", tenHeThongRapHienTai);
 
   useEffect(() => {
     dispatch(quanLyPhimThunk());
@@ -44,17 +38,60 @@ export const HomeTemplate = () => {
 
   useEffect(() => {
     dispatch(quanLyCumRapThunk(tenHeThongRapHienTai));
-  }, [tenHeThongRapHienTai]);
-
-  useEffect(() => {
     dispatch(quanLyLichChieuTheoHeThongThunk(tenHeThongRapHienTai));
   }, [tenHeThongRapHienTai]);
 
-  // console.log("lichChieu: ", lichChieuTheoHeThong?.[0]);
-  // console.log("maRapHienTai: ", tenCumRapHientai);
-  // console.log("cumRap: ", cumRap);
-  // console.log('tencumraphientai: ', tenCumRapHientai)
-  // console.log("lichChieuTheoHeThong?.[0].lstCumRap filter",data[0])
+  /////
+  useEffect(() => {
+    let DSPhimTheoNgay: InfoPhim[] = [];
+    const lichTheoRap = lichChieuTheoHeThong?.[0].lstCumRap.filter(
+      (prd) => prd.maCumRap === tenCumRapHientai
+    );
+    lichTheoRap?.[0].danhSachPhim?.map((phim) => {
+      let ds = phim.lstLichChieuTheoPhim?.filter(
+        (lichchieu) =>
+          lichchieu.ngayChieuGioChieu.substring(0, 10) == ngayHienTai
+      );
+      let gioChieu: gioChieu[] = [];
+      ds?.map((gio) =>
+        gioChieu.push({
+          gioChieu: gio.ngayChieuGioChieu.substring(11, 16),
+          maLichChieu: gio.maLichChieu,
+          rapChieu: gio.tenRap,
+        })
+      );
+      if (ds.length != 0) {
+        if (phim.hinhAnh != "") {
+          const newInfoPhim: InfoPhim = {
+            hinhPhim: phim?.hinhAnh,
+            tenPhim: phim?.tenPhim,
+            maCuaPhim: phim.maPhim,
+            gioChieu: gioChieu,
+          };
+          DSPhimTheoNgay.push(newInfoPhim);
+        } else {
+          const newInfoPhim: InfoPhim = {
+            hinhPhim: "/image/body/theater.jpg",
+            tenPhim: phim.tenPhim,
+            maCuaPhim: phim.maPhim,
+            gioChieu: gioChieu,
+            //tại sao dùng : mà k phải =
+          };
+          DSPhimTheoNgay.push(newInfoPhim);
+        }
+        // không được dùng biến có new
+        // Lỗi this expression is not callable.Type "Number" has no call signatures nếu để length(ds)
+      }
+    });
+    dispatchOrigin(quanLyRapActions.luuPhimTheoNgay(DSPhimTheoNgay));
+  }, [ngayHienTai, tenCumRapHientai]);
+
+  // DatePicker
+  const onChange: DatePickerProps["onChange"] = (_, dateString) => {
+    if (tenCumRapHientai) {
+      dispatch(quanLyRapActions.luuNgay(dateString));
+    }
+  };
 
   if (isFetchingMovieList) {
     return (
@@ -148,70 +185,95 @@ export const HomeTemplate = () => {
         {/* End cua he thong rap */}
 
         {/* head cua cum rap */}
-        <div className={cn(style.customScrollbar,"w-50% ml-2 !border-r-4 border-[#c85661] pr-4 h-[60vh] overflow-y-auto ")}>
-            {cumRap?.map((map) => {
-              return (
-                <div
-                  key={map?.maCumRap}
-                  className="mb-3 cursor-pointer hover:bg-slate-300 transition ease-in-out duration-500 rounded"
-                  onClick={() => {
-                    dispatchOrigin(quanLyRapActions.LuuCumRap(map.maCumRap));
-                  }}
-                >
-                  <div className="ml-2 flex py-2 items-center">
-                    <img
-                      className="w-[40px] h-[40px] "
-                      src={
-                        lichChieuTheoHeThong?.[0].lstCumRap.filter(
-                          (prd) => prd?.maCumRap === map.maCumRap
-                        )?.[0]?.hinhAnh || "/image/body/theater.jpg"
-                      }
-                      alt="..."
-                    />
-                    <div className="ml-2">
-                      <p className="font-bold">{map?.tenCumRap}</p>
-                      <p className="">{map?.diaChi.substring(0, 20)}...</p>
-                    </div>
+        <div
+          className={cn(
+            style.customScrollbar,
+            "w-50% ml-2 !border-r-4 border-[#c85661] pr-4 h-[60vh] overflow-y-auto "
+          )}
+        >
+          {cumRap?.map((map) => {
+            return (
+              <div
+                key={map?.maCumRap}
+                className={cn(
+                  "mb-3 cursor-pointer hover:bg-slate-300 transition ease-in-out duration-500 rounded",
+                  { "bg-slate-300": map.maCumRap == tenCumRapHientai }
+                )}
+                onClick={() => {
+                  dispatchOrigin(quanLyRapActions.LuuCumRap(map.maCumRap));
+                }}
+              >
+                <div className="ml-2 flex py-2 items-center">
+                  <img
+                    className="w-[40px] h-[40px] "
+                    src={
+                      lichChieuTheoHeThong?.[0].lstCumRap.filter(
+                        (prd) => prd?.maCumRap === map.maCumRap
+                      )?.[0]?.hinhAnh || "/image/body/theater.jpg"
+                    }
+                    alt="..."
+                  />
+                  <div className="ml-2">
+                    <p className="font-bold">{map?.tenCumRap}</p>
+                    <p className="">{map?.diaChi.substring(0, 20)}...</p>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
         {/* end cua cum rap */}
         {/* head cua lich chieu theo he thong */}
-        <div className={cn(style.customScrollbar,"w-[600px] h-[60vh] overflow-y-auto relative")}>
-          <div className="w-full" style={{textAlign:'right',position:'sticky',top:0}}>
+        <div
+          className={cn(
+            style.customScrollbar,
+            "w-[600px] h-[60vh] overflow-y-auto relative"
+          )}
+        >
+          <div
+            className="w-full"
+            style={{ textAlign: "right", position: "sticky", top: 0 }}
+          >
             <div className=" sticky top-0">
-              <Space  direction="vertical">
-                <DatePicker style={{ background: "beige" }} onChange={onChange} />
+              <Space direction="vertical">
+                <DatePicker
+                  style={{ background: "beige" }}
+                  onChange={onChange}
+                  placeholder={ngayHienTai}
+                />
                 {/* Note: chinh mau placeholder */}
               </Space>
             </div>
           </div>
           <div className="w-full">
-             {/* {(lichChieuTheoHeThong?.[0].lstCumRap
-              .filter((prd) => prd.maCumRap === tenCumRapHientai))[0].danhSachPhim.filter((lst)=>lst.lstLichChieuTheoPhim.) 
-
-
-              .map((map) => {
-                return (
-                  <div key={map.maCumRap}>
-                    {map?.danhSachPhim?.map((phim) => {
-                      return (
-                        
-                        <div className="" key={phim.maPhim}>
-                          <div className="flex mb-2 mt-2 px-2">
-                            <img className="w-[40px]" src={phim?.hinhAnh} />
-                            <p className="ml-2 font-bold">{phim?.tenPhim}</p>
-                          </div>
-                          <hr style={{border:'2px solid #c85661',width:'100%'}} />
-                        </div>
-                      );
-                    })}
+            {DSPhimTheoNgay.map((phim) => {
+              return (
+                <div key={phim.maCuaPhim}>
+                  <div>
+                    <div className="flex mb-2 mt-2 px-2">
+                      <img className="w-[50px]" src={phim?.hinhPhim} />
+                      <div>
+                        <p className="ml-2 font-bold">{phim?.tenPhim}</p>
+                        <p className="ml-2 font-bold mt-2">
+                          <span className=" text-black">Giờ chiếu:</span>{" "}
+                          {phim.gioChieu.map((gio) => (
+                            <span
+                              key={gio.maLichChieu}
+                              className=" text-red-500 bg-[rgba(248,248,248,0.8)] m-2 "
+                            >
+                              {gio.gioChieu}-{gio.rapChieu}{" "}
+                            </span>
+                          ))}
+                        </p>
+                      </div>
+                    </div>
+                    <hr
+                      style={{ border: "2px solid #c85661", width: "100%" }}
+                    />
                   </div>
-                );
-              })
-              } */}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import {
   quanLyLichChieuTheoHeThongThunk,
   quanLyRapThunk,
 } from "./thunk";
-import { CumRapInfo, LichChieuTheoHeThong, RapSys } from "types/QuanLyRap";
+import { CumRapInfo, InfoPhim, LichChieuTheoHeThong, RapSys } from "types/QuanLyRap";
 
 type QuanLyRapInitialState = {
   heThongRap?: RapSys[];
@@ -12,11 +12,15 @@ type QuanLyRapInitialState = {
   tenHeThongRapHienTai?: any;
   tenCumRapHientai?: any;
   lichChieuTheoHeThong?: LichChieuTheoHeThong[];
+  ngayHienTai?:string,
+  DSPhimTheoNgay?:InfoPhim[]
 };
 const initialState: QuanLyRapInitialState = {
   heThongRap: [],
   cumRap: [],
   tenHeThongRapHienTai: "BHDStar",
+  DSPhimTheoNgay:[]
+
 };
 export const quanLyRapSlice = createSlice({
   name: "quanLyRap",
@@ -28,6 +32,12 @@ export const quanLyRapSlice = createSlice({
     LuuCumRap: (state, actions) => {
       state.tenCumRapHientai = actions.payload;
     },
+    luuNgay: (state,actions)=>{
+      state.ngayHienTai=actions.payload;
+    },
+    luuPhimTheoNgay: (state,actions)=>{
+      state.DSPhimTheoNgay=actions.payload;
+    }
   },
   extraReducers: (builder) => {
     builder

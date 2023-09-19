@@ -1,0 +1,114 @@
+{
+  "statusCode": 200,
+  "message": "Xử lý thành công!",
+  "content": {
+    "heThongRapChieu": [
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "47090",
+                "maRap": "455",
+                "tenRap": "Rạp 5",
+                "ngayChieuGioChieu": "2023-08-22T11:21:50",
+                "giaVe": 75000,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "bhd-star-cineplex-3-2",
+            "tenCumRap": "BHD Star Cineplex - 3/2",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "L5-Vincom 3/2, 3C Đường 3/2, Q.10"
+          }
+        ],
+        "maHeThongRap": "BHDStar",
+        "tenHeThongRap": "BHD Star Cineplex",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
+      },
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "47091",
+                "maRap": "525",
+                "tenRap": "Rạp 5",
+                "ngayChieuGioChieu": "2023-08-31T11:22:08",
+                "giaVe": 75000,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "cgv-aeon-tan-phu",
+            "tenCumRap": "CGV - Aeon Tân Phú",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "30 Bờ Bao Tân Thắng, Sơn Kỳ, Tân Phú"
+          }
+        ],
+        "maHeThongRap": "CGV",
+        "tenHeThongRap": "cgv",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
+      },
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "47092",
+                "maRap": "733",
+                "tenRap": "Rạp 3",
+                "ngayChieuGioChieu": "2023-08-26T11:22:28",
+                "giaVe": 75000,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "cns-quoc-thanh",
+            "tenCumRap": "CNS - Quốc Thanh",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "271 Nguyễn Trãi, Q.1"
+          }
+        ],
+        "maHeThongRap": "CineStar",
+        "tenHeThongRap": "CineStar",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/cinestar.png"
+      },
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "47093",
+                "maRap": "769",
+                "tenRap": "Rạp 9",
+                "ngayChieuGioChieu": "2023-08-18T11:23:27",
+                "giaVe": 75000,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "glx-nguyen-du\r\n",
+            "tenCumRap": "GLX - Nguyễn Du",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "116 Nguyễn Du, Q.1"
+          }
+        ],
+        "maHeThongRap": "Galaxy",
+        "tenHeThongRap": "Galaxy Cinema",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/galaxy-cinema.png"
+      }
+    ],
+    "maPhim": 12727,
+    "tenPhim": "Trò Chơi Con Mực",
+    "biDanh": "tro-choi-con-muc",
+    "trailer": "https://www.youtube.com/watch?v=0HayEFK8Rw8",
+    "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/tro-choi-con-muc_gp09.jpg",
+    "moTa": "Trò chơi con mực là một bộ phim truyền hình Hàn Quốc do Hwang Dong-hyuk viết kịch bản và đạo diễn. Phim có sự tham gia của dàn diễn viên Lee Jung-jae, Park Hae-soo, Wi Ha-joon, Jung Ho-yeon, O Yeong-su, Heo Sung-tae, Anupam Tripathi và Kim Joo-ryoung.",
+    "maNhom": "GP09",
+    "hot": false,
+    "dangChieu": true,
+    "sapChieu": false,
+    "ngayKhoiChieu": "2023-08-10T00:00:00",
+    "danhGia": 5
+  },
+  "dateTime": "2023-09-18T23:41:47.3355787+07:00",
+  "messageConstants": null
+}
