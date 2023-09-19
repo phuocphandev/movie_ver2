@@ -15,8 +15,11 @@ import {
 import { quanLyRapActions } from "store/quanLyRap/slice";
 import DatePicker from "components/ui/DatePicker";
 import { InfoPhim, gioChieu } from "types/QuanLyRap";
+import { generatePath, useNavigate } from "react-router-dom";
+import { PATH } from "constant";
 
 export const HomeTemplate = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const dispatchOrigin = useDispatch();
   const { movieList, isFetchingMovieList } = useSelector(
@@ -113,52 +116,71 @@ export const HomeTemplate = () => {
   return (
     <div className=" p-5 rounded-sm ">
       <div className="grid grid-cols-4 gap-[30px]">
-        {movieList?.map((movie) => (
-          // <div className="w-[240px] transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110  duration-500">
-          <Card
-            key={movie.maPhim}
-            // hoverable = {true}
-            style={{ width: 240, border: "none" }}
-            cover={
-              <div className="relative">
-                <img alt="example" src={movie.hinhAnh} className="" />
-                <div className={cn(style.hoverOverlayLayer)}>
-                  <button
-                    className={cn(style.overlayButtonLeft, "text-yellow-500 ")}
-                  >
-                    <EyeOutlined />
-                  </button>
-                  <button
-                    className={cn(style.overlayButtonRight, "text-yellow-500")}
-                  >
-                    <ShoppingOutlined />
-                  </button>
+        {movieList?.map((movie) => {
+          // Lưu ý: map(()=>{const.... return()}) còn nếu muốn return về 1 cái jsx: map(()=>())
+            const detailPath = generatePath(PATH.detail, {
+              movieId: movie.maPhim,
+            });
+            const ticketPath = generatePath(PATH.ticket, {
+              movieId: movie.maPhim,
+            });
+          return (
+            // <div className="w-[240px] transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110  duration-500">
+            <Card
+              key={movie.maPhim}
+              // hoverable = {true}
+              style={{ width: 240, border: "none" }}
+              cover={
+                <div className="relative">
+                  <img alt="example" src={movie.hinhAnh} className="" />
+                  <div className={cn(style.hoverOverlayLayer)}>
+                    <button
+                      className={cn(
+                        style.overlayButtonLeft,
+                        "text-yellow-500 "
+                      )}
+                      onClick={() => {
+                        navigate(detailPath);
+                      }}
+                    >
+                      <EyeOutlined />
+                    </button>
+                    <button
+                      className={cn(
+                        style.overlayButtonRight,
+                        "text-yellow-500"
+                      )}
+                      onClick={() => navigate(ticketPath)}
+                    >
+                      <ShoppingOutlined />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            }
-            className={cn(
-              style.CardCSS,
-              "transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 duration-500 cursor-pointer"
-            )}
-          >
-            <Card.Meta
-              title={
-                <p
-                  className="text-blue-500 font-bold"
-                  style={{ whiteSpace: "normal" }}
-                >
-                  {movie.tenPhim}
-                </p>
               }
-              description={
-                <p className="text-red-500 flex justify-center">
-                  {movie.moTa.substring(0, 50)}
-                </p>
-              }
-              style={{ color: "red" }}
-            />
-          </Card>
-        ))}
+              className={cn(
+                style.CardCSS,
+                "transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 duration-500 cursor-pointer"
+              )}
+            >
+              <Card.Meta
+                title={
+                  <p
+                    className="text-blue-500 font-bold"
+                    style={{ whiteSpace: "normal" }}
+                  >
+                    {movie.tenPhim}
+                  </p>
+                }
+                description={
+                  <p className="text-red-500 flex justify-center">
+                    {movie.moTa.substring(0, 50)}
+                  </p>
+                }
+                style={{ color: "red" }}
+              />
+            </Card>
+          );
+        })}
       </div>
       <div className="bg-[rgba(62,67,70,0.73)] mt-7 rounded-lg text-black flex ">
         {/* head cua he thong rap */}

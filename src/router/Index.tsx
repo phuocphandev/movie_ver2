@@ -6,7 +6,8 @@ import AuthLayout from "components/layouts/AuthLayout";
 import HomeLayout from "components/layouts/HomeLayout";
 import { AdminLayout, FilmAdd, FilmManage } from "components";
 import { AdminFilm, AdminUser } from "pages/admin";
-import AccountInTemplate from "components/template/Account/AccountInTemplate";
+import Detail from "pages/detail/Detail";
+import Ticket from "pages/ticket/Ticket";
 
 
 // import Register from "pages/account/Register";
@@ -28,7 +29,7 @@ export const router: RouteObject[] = [
     ],
   },
   {
-    element: <AccountInTemplate/>,
+    element: <AccountInfo/>,
     path: PATH.account
   },
   {
@@ -38,7 +39,15 @@ export const router: RouteObject[] = [
         element: <Home />,
         path: '/',
         index: true
-      }
+      },
+      {
+        element: <Detail />,
+        path: PATH.detail,
+      },
+      {
+        element: <Ticket/>,
+        path: PATH.ticket,
+      },
     ],
   },
   {
