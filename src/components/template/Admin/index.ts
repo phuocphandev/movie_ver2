@@ -1,3 +1,3 @@
-export * from './FilmAdd'
-export * from './FilmManage'
-export * from './AdminNavbar'
+export * from "./AdminFilmTemp";
+export * from "./AdminNavbar";
+export * from './AdminUserTemp'

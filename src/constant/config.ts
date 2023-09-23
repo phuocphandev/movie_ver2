@@ -4,8 +4,6 @@ export const PATH = {
     register:'/register',
     admin:'/admin',
     adminFilm:'/admin/film',
-    adminFilmManage: '/admin/film/manage',
-    adminFilmAdd: '/admin/film/addnew',
     detail:'detail/:movieId',
     ticket:'ticket/:movieId',
     //userAdmin

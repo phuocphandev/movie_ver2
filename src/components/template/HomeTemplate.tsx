@@ -50,7 +50,7 @@ export const HomeTemplate = () => {
     const lichTheoRap = lichChieuTheoHeThong?.[0].lstCumRap.filter(
       (prd) => prd.maCumRap === tenCumRapHientai
     );
-    lichTheoRap?.[0].danhSachPhim?.map((phim) => {
+    lichTheoRap?.[0]?.danhSachPhim?.map((phim) => {
       let ds = phim.lstLichChieuTheoPhim?.filter(
         (lichchieu) =>
           lichchieu.ngayChieuGioChieu.substring(0, 10) == ngayHienTai
@@ -182,6 +182,7 @@ export const HomeTemplate = () => {
           );
         })}
       </div>
+      <div className="text-center mt-5 text-white font-bold">THÔNG TIN LỊCH CHIẾU</div>
       <div className="bg-[rgba(62,67,70,0.73)] mt-7 rounded-lg text-black flex ">
         {/* head cua he thong rap */}
         <div className="ml-2 w-[50px] !border-r-4 border-[#c85661]">

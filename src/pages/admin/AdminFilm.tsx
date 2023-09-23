@@ -1,6 +1,8 @@
+import { AdminFilmTemp } from "components"
+
 export const AdminFilm = () => {
   return (
-    <div>AdminFilm</div>
+    <AdminFilmTemp/>
   )
 }
 

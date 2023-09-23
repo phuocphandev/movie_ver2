@@ -22,16 +22,16 @@ export const NavBar = () => {
   return (
     <nav className="bg-transparent w-full z-20 top-0 left-0 h-[6vh]">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center">
+        <button onClick={()=>{navigate('/')}} className="flex items-center">
           <img
-            src="../../../../image/navbar/Logo.png"
+            src="image/navbar/Logo.png"
             className="h-10 mr-2 pt-1"
             alt="Logo"
           />
           <span className="text-white self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Movids
           </span>
-        </a>
+        </button>
         <div className="flex md:order-2">
           {!accessToken && (<div className="flex md:order-2">
             <button

@@ -1,5 +1,4 @@
-import { Button } from "antd";
-import { Input } from "components/ui";
+import {Button, Input } from "components/ui";
 import { useAuth } from "hooks/useAuth";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,8 +19,7 @@ const AccountInfoTab = () => {
   });
   const dispatch = useAppDispatch()
   const {isUpdateUser}= useAuth()
-
-  console.log("user: ", user);
+  console.log("Đây là UserINFOTAB nè:",user)
 
   useEffect(() => {
     reset(
@@ -39,9 +37,6 @@ const AccountInfoTab = () => {
            console.log(err);
           })
   }
-  
-  console.log(errors);
-  
 
   return (
     <form className="w-[40vw] px-10 text-white" onSubmit={handleSubmit(onSubmit)}>
@@ -59,6 +54,7 @@ const AccountInfoTab = () => {
       <div className="z-[2] cursor-not-allowed w-full h-full absolute"></div>
       <InputS label="Mã người dùng" name="maLoaiNguoiDung" register={register}  error={errors?.maLoaiNguoiDung?.message}  disabled />
 </div>
+
       <div className="text-right">
         <Button
           className="mt-[60px] w-[200px] !h-[40px] mb-[20px] mr-10  !text-white bg-red-500"

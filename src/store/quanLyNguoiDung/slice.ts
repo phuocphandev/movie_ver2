@@ -3,6 +3,7 @@ import { loginThunk, getUserThunk, updateUserThunk } from "./thunk";
 import { User, UserInfo } from "types/QuanLyNguoiDung";
 import { toast } from "react-toastify";
 
+// user?: User | UserInfo;
 type quanLyNguoiDung = {
   user?: User | UserInfo;
   accessToken?: string;
@@ -38,7 +39,7 @@ const quanLyNguoiDungSlice = createSlice({
         // console.log("getUser: ", payload);
       })
       .addCase(updateUserThunk.pending, (state, _) => {
-        state.isUpdateUser = true; 
+        state.isUpdateUser = true;
       })
       .addCase(updateUserThunk.fulfilled, (state, _) => {
         state.isUpdateUser = false;

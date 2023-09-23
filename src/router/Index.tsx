@@ -4,10 +4,10 @@ import PATH from "constant/config";
 import Home from "pages/Home";
 import AuthLayout from "components/layouts/AuthLayout";
 import HomeLayout from "components/layouts/HomeLayout";
-import { AdminLayout, FilmAdd, FilmManage } from "components";
-import { AdminFilm, AdminUser } from "pages/admin";
+import { AdminLayout } from "components";
 import Detail from "pages/detail/Detail";
 import Ticket from "pages/ticket/Ticket";
+import { AdminFilm, AdminUser } from "pages/admin";
 
 
 // import Register from "pages/account/Register";
@@ -33,12 +33,12 @@ export const router: RouteObject[] = [
     path: PATH.account
   },
   {
+    path: '/',
     element: <HomeLayout />,
     children: [
       {
         element: <Home />,
-        path: '/',
-        index: true
+        index: true,
       },
       {
         element: <Detail />,
@@ -56,22 +56,12 @@ export const router: RouteObject[] = [
     children: [
       {
         element: <AdminFilm />,
-        path: PATH.adminFilm,
-        children: [
-          {
-            element: <FilmManage/>,
-            path: PATH.adminFilmManage,
-            index:true
-          },
-          {
-            element: <FilmAdd/>,
-            path: PATH.adminFilmAdd,
-          }
-        ]
+        path: PATH.adminFilm, 
       },
       {
-        element: <AdminUser />,
-        path: PATH.adminUser
+        element: <AdminUser/>,
+        path: PATH.adminUser,
+        index:true,
       }
     ]
   }

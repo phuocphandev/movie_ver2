@@ -3,6 +3,7 @@ import styleAuth from "../../layouts/index.module.scss";
 import styles from "./index.module.scss";
 import cn from "classnames";
 import AccountInfoTab from "./AccountInfoTab.tsx";
+import AccountTicketTab from "./AccountTicketTab.tsx";
 ;
 
 export const AccountInTemplate = () => {
@@ -34,7 +35,7 @@ export const AccountInTemplate = () => {
                             </div>
                         ),
                         key: 'ticketInfo',
-                        children: <div className="min-h-full">tabs 1</div>,
+                        children: <AccountTicketTab/>,
                     },
                 ]}
             />

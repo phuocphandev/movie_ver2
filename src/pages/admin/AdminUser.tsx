@@ -1,6 +1,8 @@
+import { AdminUserTemp } from "components"
+
 export const AdminUser = () => {
   return (
-    <div>AdminUser</div>
+    <AdminUserTemp/>
   )
 }
 
