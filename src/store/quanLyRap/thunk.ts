@@ -37,3 +37,15 @@ export const quanLyLichChieuTheoHeThongThunk = createAsyncThunk(
     }
   }
 );
+
+export const LayThongTinPhimThunk = createAsyncThunk(
+  "quanLyRap/ThongTinPhimThunk",
+  async (payload:number, {rejectWithValue}) => {
+    try {
+      const data = await QuanLyRap.GetMovieInfo(payload)
+      return data.data.content;
+    } catch (error) {
+      rejectWithValue(error)
+    }
+  }
+)

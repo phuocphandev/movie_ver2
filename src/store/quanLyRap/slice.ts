@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  LayThongTinPhimThunk,
   quanLyCumRapThunk,
   quanLyLichChieuTheoHeThongThunk,
   quanLyRapThunk,
 } from "./thunk";
-import { CumRapInfo, InfoPhim, LichChieuTheoHeThong, RapSys } from "types/QuanLyRap";
+import {
+  CumRapInfo,
+  InfoPhim,
+  LichChieuTheoHeThong,
+  MovieInfo,
+  RapSys,
+} from "types/QuanLyRap";
 
 type QuanLyRapInitialState = {
   heThongRap?: RapSys[];
@@ -12,15 +19,15 @@ type QuanLyRapInitialState = {
   tenHeThongRapHienTai?: any;
   tenCumRapHientai?: any;
   lichChieuTheoHeThong?: LichChieuTheoHeThong[];
-  ngayHienTai?:string,
-  DSPhimTheoNgay?:InfoPhim[]
+  ngayHienTai?: string;
+  DSPhimTheoNgay?: InfoPhim[];
+  InfoPhim?: MovieInfo;
 };
 const initialState: QuanLyRapInitialState = {
   heThongRap: [],
   cumRap: [],
   tenHeThongRapHienTai: "BHDStar",
-  DSPhimTheoNgay:[]
-
+  DSPhimTheoNgay: [],
 };
 export const quanLyRapSlice = createSlice({
   name: "quanLyRap",
@@ -32,12 +39,12 @@ export const quanLyRapSlice = createSlice({
     LuuCumRap: (state, actions) => {
       state.tenCumRapHientai = actions.payload;
     },
-    luuNgay: (state,actions)=>{
-      state.ngayHienTai=actions.payload;
+    luuNgay: (state, actions) => {
+      state.ngayHienTai = actions.payload;
     },
-    luuPhimTheoNgay: (state,actions)=>{
-      state.DSPhimTheoNgay=actions.payload;
-    }
+    luuPhimTheoNgay: (state, actions) => {
+      state.DSPhimTheoNgay = actions.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -53,7 +60,10 @@ export const quanLyRapSlice = createSlice({
         (state, { payload }) => {
           state.lichChieuTheoHeThong = payload;
         }
-      );
+      )
+      .addCase(LayThongTinPhimThunk.fulfilled, (state, { payload }) => {
+        state.InfoPhim = payload;
+      });
   },
 });
 export const { reducer: quanLyRapReducer, actions: quanLyRapActions } =
