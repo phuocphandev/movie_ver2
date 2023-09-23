@@ -38,11 +38,11 @@ export const quanLyRapSlice = createSlice({
     LuuCumRap: (state, actions) => {
       state.tenCumRapHientai = actions.payload;
     },
-    luuNgay: (state,actions)=>{
-      state.ngayHienTai=actions.payload;
+    luuNgay: (state, actions) => {
+      state.ngayHienTai = actions.payload;
     },
-    luuPhimTheoNgay: (state,actions)=>{
-      state.DSPhimTheoNgay=actions.payload;
+    luuPhimTheoNgay: (state, actions) => {
+      state.DSPhimTheoNgay = actions.payload;
     },
     luuGio:(state,actions)=>{
       state.gioChieuHienTai = actions.payload
