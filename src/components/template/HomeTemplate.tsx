@@ -115,7 +115,7 @@ export const HomeTemplate = () => {
   }
   return (
     <div className=" p-5 rounded-sm ">
-      <div className="grid grid-cols-4 gap-[30px]">
+      <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-[30px] ">
         {movieList?.map((movie) => {
           // Lưu ý: map(()=>{const.... return()}) còn nếu muốn return về 1 cái jsx: map(()=>())
             const detailPath = generatePath(PATH.detail, {
@@ -126,59 +126,61 @@ export const HomeTemplate = () => {
             });
           return (
             // <div className="w-[240px] transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110  duration-500">
-            <Card
-              key={movie.maPhim}
-              // hoverable = {true}
-              style={{ width: 240, border: "none" }}
-              cover={
-                <div className="relative">
-                  <img alt="example" src={movie.hinhAnh} className="" />
-                  <div className={cn(style.hoverOverlayLayer)}>
-                    <button
-                      className={cn(
-                        style.overlayButtonLeft,
-                        "text-yellow-500 "
-                      )}
-                      onClick={() => {
-                        navigate(detailPath);
-                      }}
-                    >
-                      <EyeOutlined />
-                    </button>
-                    <button
-                      className={cn(
-                        style.overlayButtonRight,
-                        "text-yellow-500"
-                      )}
-                      onClick={() => navigate(ticketPath)}
-                    >
-                      <ShoppingOutlined />
-                    </button>
+            <div className="flex justify-center">
+              <Card
+                key={movie.maPhim}
+                // hoverable = {true}
+                style={{ width: 240, border: "none" }}
+                cover={
+                  <div className="relative">
+                    <img alt="example" src={movie.hinhAnh} className="" />
+                    <div className={cn(style.hoverOverlayLayer)}>
+                      <button
+                        className={cn(
+                          style.overlayButtonLeft,
+                          "text-yellow-500 "
+                        )}
+                        onClick={() => {
+                          navigate(detailPath);
+                        }}
+                      >
+                        <EyeOutlined />
+                      </button>
+                      <button
+                        className={cn(
+                          style.overlayButtonRight,
+                          "text-yellow-500"
+                        )}
+                        onClick={() => navigate(ticketPath)}
+                      >
+                        <ShoppingOutlined />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              }
-              className={cn(
-                style.CardCSS,
-                "transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 duration-500 cursor-pointer"
-              )}
-            >
-              <Card.Meta
-                title={
-                  <p
-                    className="text-blue-500 font-bold"
-                    style={{ whiteSpace: "normal" }}
-                  >
-                    {movie.tenPhim}
-                  </p>
                 }
-                description={
-                  <p className="text-red-500 flex justify-center">
-                    {movie.moTa.substring(0, 50)}
-                  </p>
-                }
-                style={{ color: "red" }}
-              />
-            </Card>
+                className={cn(
+                  style.CardCSS,
+                  "transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 duration-500 cursor-pointer"
+                )}
+              >
+                <Card.Meta
+                  title={
+                    <p
+                      className="text-blue-500 font-bold"
+                      style={{ whiteSpace: "normal"}}
+                    >
+                      {movie.tenPhim}
+                    </p>
+                  }
+                  description={
+                    <p className="text-red-500 flex justify-center">
+                      {movie.moTa.substring(0, 50)}
+                    </p>
+                  }
+                  style={{ color: "red" }}
+                />
+              </Card>
+            </div>
           );
         })}
       </div>

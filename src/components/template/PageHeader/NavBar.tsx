@@ -79,7 +79,7 @@ export const NavBar = () => {
         trigger="click"
       > 
           <Avatar
-            className="!ml-40 !cursor-pointer !flex !items-center !justify-center"
+            className="xl:!ml-40 !cursor-pointer !flex !items-center !justify-center"
             size={40}
             icon={<UserOutlined />}
             

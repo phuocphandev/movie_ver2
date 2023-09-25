@@ -14,7 +14,7 @@ export const HomeLayout = () => {
       <NavBar />
 
       <div
-        className="rounded-3xl m-auto px-10 py-15"
+        className="rounded-3xl xl:m-auto px-10 py-15 relative"
         style={{
           background: "linear-gradient(to top, #000428, #004e92)",
           backgroundPosition: "center",
