@@ -3,7 +3,7 @@ import { z } from "zod";
 const hoTenRegex = /^[\p{L}\s]+$/u;
 const matKhauRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
 
-export const RegisterSchema = z.object({
+export const AddUserSchema = z.object({
   taiKhoan: z
     .string()
     .nonempty("Fill in blank")
@@ -16,15 +16,15 @@ export const RegisterSchema = z.object({
       new RegExp(matKhauRegex),
       "Your password required at least 8 character and 1 number"
     ),
-  email: z.string().nonempty("Fill in blank").email("Invalid email"),
+  email:z.string().nonempty("Fill in blank").email("Invalid email"),
   soDt: z
     .string()
     .nonempty("Fill in blank")
     .regex(new RegExp(`^\\d+$`), { message: "Numbers only" }),
-  maNhom: z?.string().nonempty("Fill in blank"),
   hoTen: z.string().nonempty("Fill in blank").regex(new RegExp(hoTenRegex), {
     message: "Text only",
   }),
 });
 
-export type RegisterSchemaType = z.infer<typeof RegisterSchema>;
+export type AddUserSchemaType = z.infer<typeof AddUserSchema>;
+

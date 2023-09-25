@@ -16,7 +16,7 @@ export const layDSNguoiDungThunk = createAsyncThunk(
 export const xoaNguoiDungThunk = createAsyncThunk(
   "quanTri/xoaNguoiDung",
   async (
-    payload: { tkXoa: string; pageNow: number },
+    payload: { tkXoa: string; pageNow?: number },
     { rejectWithValue, dispatch }
   ) => {
     try {
@@ -26,8 +26,20 @@ export const xoaNguoiDungThunk = createAsyncThunk(
       return data.data.content;
     } catch (error) {
       rejectWithValue(error);
-      toast.error(error.response.data.content)
+      toast.error(error.response.data.content);
       console.log("Error nè", error);
+    }
+  }
+);
+
+export const timKiemNguoiDungThunk = createAsyncThunk(
+  "quanTri/TimKiemNguoiDung",
+  async (payload:string, { rejectWithValue }) => {
+    try {
+      const data = await QuanTri.timKiemNguoiDung(payload);
+      return data.data.content;
+    } catch (error) {
+      rejectWithValue(error);
     }
   }
 );

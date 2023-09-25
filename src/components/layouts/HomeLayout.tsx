@@ -5,7 +5,7 @@ import PageFooter from "../template/PageFooter/PageFooter";
 export const HomeLayout = () => {
   return (
     <div
-      className="h-full w-full flex flex-col gap-10"
+      className="h-full w-full flex flex-col gap-10 relative"
       style={{
         backgroundImage: 'url("/image/body/background.jpg")',
         backgroundPosition: "center",

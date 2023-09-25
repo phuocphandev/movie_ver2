@@ -11,9 +11,10 @@ type InputProps={
     label?:string 
     className?:string
     disabled?:boolean
+    value?:string
 }
 
-export const Input = ({register,error,name,type,placeholder,label,className,disabled}:InputProps) => {
+export const Input = ({register,error,name,type,placeholder,label,className,disabled,value}:InputProps) => {
   return (
     <div className="className">
       {label && <p className="-mb-5 mt-3">{label}</p> }
@@ -23,6 +24,7 @@ export const Input = ({register,error,name,type,placeholder,label,className,disa
       type={type}
       placeholder={placeholder}
       disabled={disabled}
+      value={value}
       />
         <p className="text-red-500">{error}</p>
     </div>

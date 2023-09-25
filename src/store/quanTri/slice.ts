@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DSUser } from "types/QuanTri";
-import { layDSNguoiDungThunk, xoaNguoiDungThunk } from "./thunk";
-
+import { DSUser, timKiemNguoiDung } from "types/QuanTri";
+import {
+  layDSNguoiDungThunk,
+  timKiemNguoiDungThunk,
+  xoaNguoiDungThunk,
+} from "./thunk";
+import { toast } from "react-toastify";
 
 type QuanTri = {
   DSUser?: DSUser;
   isDelete?: boolean;
   page?: number;
+  timKiemUser?: timKiemNguoiDung[];
+  UpdateUser?: any;
 };
 
 const initialState: QuanTri = {
@@ -17,7 +23,17 @@ const initialState: QuanTri = {
 export const QuanTriSlice = createSlice({
   name: "quanTri",
   initialState,
-  reducers: {},
+  reducers: {
+    luuUser: (state, actions) => {
+      state.UpdateUser = actions.payload;
+    },
+    xoaUser: (state) => {
+      state.UpdateUser = null;
+    },
+    xoaTimKiemUser: (state) => {
+      state.timKiemUser = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(layDSNguoiDungThunk.fulfilled, (state, { payload }) => {
@@ -25,7 +41,7 @@ export const QuanTriSlice = createSlice({
         state.page = payload.pageNow;
       })
       .addCase(xoaNguoiDungThunk.fulfilled, (state, { payload }) => {
-        // toast.success(payload);
+        toast.success(payload);
         console.log("xoaThanhcong ", payload);
         state.isDelete = false;
       })
@@ -34,6 +50,9 @@ export const QuanTriSlice = createSlice({
       })
       .addCase(xoaNguoiDungThunk.pending, (state, _) => {
         state.isDelete = true;
+      })
+      .addCase(timKiemNguoiDungThunk.fulfilled, (state, { payload }) => {
+        state.timKiemUser = payload;
       });
   },
 });

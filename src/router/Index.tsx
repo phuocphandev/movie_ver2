@@ -60,7 +60,6 @@ export const router: RouteObject[] = [
       },
       {
         element: <AdminUser/>,
-        path: PATH.adminUser,
         index:true,
       }
     ]
