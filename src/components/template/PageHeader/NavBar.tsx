@@ -11,7 +11,7 @@ import { Avatar } from "components/ui";
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  const [isToggled, setIsToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(true);
   const handleIsToggled = () => {
     setIsToggled(!isToggled); //Trả về gtrị opposite
   };

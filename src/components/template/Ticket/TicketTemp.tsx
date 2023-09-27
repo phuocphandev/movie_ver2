@@ -12,8 +12,13 @@ const TicketTemp = () => {
   const dispatch = useAppDispatch();
   const dispatchOrigin = useDispatch();
   const { movieId } = params;
-  const { InfoPhim, tenHeThongRapHienTai, tenCumRapHientai, ngayHienTai ,gioChieuHienTai} =
-    useTheaterData();
+  const {
+    InfoPhim,
+    tenHeThongRapHienTai,
+    tenCumRapHientai,
+    ngayHienTai,
+    gioChieuHienTai,
+  } = useTheaterData();
   useEffect(() => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId, 10)));
   }, []);
@@ -33,22 +38,34 @@ const TicketTemp = () => {
   console.log("DSNgay", DSNgay);
 
   return (
-    <div className="w-[80vw] mb-20">
+    <div className="w-[80vw] mb-20 m-auto">
       <div className="w-full text-3xl font-bold text-white text-center p-2">
         ĐẶT VÉ XEM PHIM
       </div>
       <div className="">
-        <div className="w-[80%] flex  ">
-          <div className="w-1/3 border-r-2 border-white p-5">
-            <img src={InfoPhim?.hinhAnh} alt="..." className="w-full h-1/2" />
+        <div className="w-full xl:w-[80%] xl:flex flex-cols gap-10 m-auto">
+          <div className="w-full xl:w-1/3 xl:border-r-2 border-white p-5">
+            <img
+              src={InfoPhim?.hinhAnh}
+              alt="..."
+              className="w-full h-full xl:h-1/2"
+            />
             <p className="text-2xl font-bold text-orange-50 ">
               {InfoPhim?.tenPhim}
             </p>
           </div>
-          <div className="">
+          <div className="xl:w-2/3">
             <div className="ml-2 flex flex-col gap-2">
               <div>
-                <p className="text-white text-2xl bg-orange-300">Chọn hệ thống rạp:</p>
+                <p
+                  className="text-white text-2xl border-l-2 border-b-2 border-orange-500 rounded-xl px-2 py-1"
+                  style={{
+                    boxShadow:
+                      " rgba(240, 143, 45, 0.4) -5px 5px, rgba(240, 143, 45, 0.3) -2px 2px, rgba(240, 143, 45, 0.05) -0px 8px",
+                  }}
+                >
+                  Chọn hệ thống rạp:
+                </p>
                 <div className="p-3 mt-2 flex gap-5">
                   {InfoPhim?.heThongRapChieu.map((hth) => (
                     <button
@@ -69,7 +86,15 @@ const TicketTemp = () => {
               </div>
 
               <div className="">
-                <p className="text-orange-300 text-2xl">Chọn cụm rạp:</p>
+                <p
+                  className="text-2xl border-l-2 border-b-2 border-orange-500 rounded-xl px-2 py-1 text-white"
+                  style={{
+                    boxShadow:
+                      " rgba(240, 143, 45, 0.4) -5px 5px, rgba(240, 143, 45, 0.3) -2px 2px, rgba(240, 143, 45, 0.05) -0px 8px",
+                  }}
+                >
+                  Chọn cụm rạp:
+                </p>
                 <div className="flex gap-5 pl-3 mt-3">
                   {InfoPhim?.heThongRapChieu
                     .filter(
@@ -95,7 +120,15 @@ const TicketTemp = () => {
                       </button>
                     ))}
                 </div>
-                <p className="text-orange-300  text-2xl">Chọn lịch chiếu:</p>
+                <p
+                  className="text-white  text-2xl border-l-2 border-b-2 border-orange-500 rounded-xl px-2 py-1"
+                  style={{
+                    boxShadow:
+                      " rgba(240, 143, 45, 0.4) -5px 5px, rgba(240, 143, 45, 0.3) -2px 2px, rgba(240, 143, 45, 0.05) -0px 8px",
+                  }}
+                >
+                  Chọn lịch chiếu:
+                </p>
                 <div className="text-green-500 p-3">
                   {DSNgay.map((ngay, index) => (
                     <button
@@ -113,7 +146,15 @@ const TicketTemp = () => {
                 </div>
 
                 <div>
-                  <p className="text-orange-300  text-2xl">Chọn giờ chiếu:</p>
+                  <p
+                    className="text-white text-2xl border-l-2 border-b-2 border-orange-500 rounded-xl px-2 py-1"
+                    style={{
+                      boxShadow:
+                        " rgba(240, 143, 45, 0.4) -5px 5px, rgba(240, 143, 45, 0.3) -2px 2px, rgba(240, 143, 45, 0.05) -0px 8px",
+                    }}
+                  >
+                    Chọn giờ chiếu:
+                  </p>
                   <div className="text-green-500 p-3 ">
                     {InfoPhim?.heThongRapChieu
                       .filter(
@@ -128,7 +169,21 @@ const TicketTemp = () => {
                           ngayHienTai
                       )
                       ?.map((giochieu) => (
-                        <button key={giochieu.maLichChieu} onClick={()=>{dispatchOrigin(quanLyRapActions.luuGio(giochieu.ngayChieuGioChieu.substring(11, 16)));dispatchOrigin(quanLyRapActions.luuMaLichChieu(giochieu.maLichChieu))}}>
+                        <button
+                          key={giochieu.maLichChieu}
+                          onClick={() => {
+                            dispatchOrigin(
+                              quanLyRapActions.luuGio(
+                                giochieu.ngayChieuGioChieu.substring(11, 16)
+                              )
+                            );
+                            dispatchOrigin(
+                              quanLyRapActions.luuMaLichChieu(
+                                giochieu.maLichChieu
+                              )
+                            );
+                          }}
+                        >
                           <span className="bg-white py-1 px-2 rounded-2xl">
                             {giochieu.ngayChieuGioChieu.substring(11, 16)}
                           </span>
@@ -138,7 +193,15 @@ const TicketTemp = () => {
                 </div>
 
                 <div>
-                  <p className="text-orange-300  text-2xl">Giá vé:</p>
+                  <p
+                    className="text-white  text-2xl border-l-2 border-b-2 border-orange-500 rounded-xl px-2 py-1"
+                    style={{
+                      boxShadow:
+                        " rgba(240, 143, 45, 0.4) -5px 5px, rgba(240, 143, 45, 0.3) -2px 2px, rgba(240, 143, 45, 0.05) -0px 8px",
+                    }}
+                  >
+                    Giá vé:
+                  </p>
                   <div className="text-green-500 p-3 ">
                     {InfoPhim?.heThongRapChieu
                       .filter(
@@ -150,24 +213,25 @@ const TicketTemp = () => {
                       ?.lichChieuPhim?.filter(
                         (ngaychieu) =>
                           ngaychieu.ngayChieuGioChieu.substring(0, 10) ==
-                          ngayHienTai && ngaychieu.ngayChieuGioChieu.substring(11, 16) == gioChieuHienTai
+                            ngayHienTai &&
+                          ngaychieu.ngayChieuGioChieu.substring(11, 16) ==
+                            gioChieuHienTai
                       )
                       ?.map((gioChieu) => (
-                        <p key={gioChieu.maLichChieu} >
-                          <span className="text-red-950 py-1 px-2 rounded-2xl">
+                        <p key={gioChieu.maLichChieu}>
+                          <span className="text-green-500 py-1 px-2 rounded-2xl">
                             {gioChieu.giaVe}VND
                           </span>
                         </p>
                       ))}
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
-      <ChairBooking/>
+      <ChairBooking />
     </div>
   );
 };

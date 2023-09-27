@@ -98,19 +98,24 @@ export const HomeTemplate = () => {
 
   if (isFetchingMovieList) {
     return (
-      <div className="p-5 rounded-sm">
-        <div className="grid grid-cols-4 gap-[30px] mt-10">
-          {[...Array(16)].map((_, index) => {
-            return (
-              <Card key={index} className="!w-[240px]">
-                <Skeleton.Image active className="!w-full !h-[250px]" />
-                <Skeleton.Input active className="!w-full !mt-10" />
-                <Skeleton.Input active className="!w-full !mt-10" />
-              </Card>
-            );
-          })}
+      
+        <div className="p-5 rounded-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[30px] mt-10">
+            {[...Array(16)].map((_, index) => {
+              return (
+                <div key={index} className="flex justify-center">
+                  <Card  className="!w-[240px]">
+                    <Skeleton.Image active className="!w-full !h-[250px]" />
+                    <Skeleton.Input active className="!w-full !mt-10" />
+                    <Skeleton.Input active className="!w-full !mt-10" />
+                  </Card>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+        
+      
     );
   }
   return (
@@ -118,12 +123,12 @@ export const HomeTemplate = () => {
       <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-[30px] ">
         {movieList?.map((movie) => {
           // Lưu ý: map(()=>{const.... return()}) còn nếu muốn return về 1 cái jsx: map(()=>())
-            const detailPath = generatePath(PATH.detail, {
-              movieId: movie.maPhim,
-            });
-            const ticketPath = generatePath(PATH.ticket, {
-              movieId: movie.maPhim,
-            });
+          const detailPath = generatePath(PATH.detail, {
+            movieId: movie.maPhim,
+          });
+          const ticketPath = generatePath(PATH.ticket, {
+            movieId: movie.maPhim,
+          });
           return (
             // <div className="w-[240px] transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110  duration-500">
             <div className="flex justify-center">
@@ -167,7 +172,7 @@ export const HomeTemplate = () => {
                   title={
                     <p
                       className="text-blue-500 font-bold"
-                      style={{ whiteSpace: "normal"}}
+                      style={{ whiteSpace: "normal" }}
                     >
                       {movie.tenPhim}
                     </p>
@@ -184,8 +189,10 @@ export const HomeTemplate = () => {
           );
         })}
       </div>
-      <div className="text-center mt-5 text-white font-bold">THÔNG TIN LỊCH CHIẾU</div>
-      <div className="bg-[rgba(62,67,70,0.73)] mt-7 rounded-lg text-black flex ">
+      <div className="text-center mt-5 text-white font-bold">
+        THÔNG TIN LỊCH CHIẾU
+      </div>
+      <div className="hidden xl:flex bg-[rgba(62,67,70,0.73)] mt-7 rounded-lg text-black ">
         {/* head cua he thong rap */}
         <div className="ml-2 w-[50px] !border-r-4 border-[#c85661]">
           {/* phải có border-r-4 trước rồi mới dùng border màu được */}
@@ -201,7 +208,11 @@ export const HomeTemplate = () => {
                     dispatchOrigin(quanLyRapActions.LuuMaRap(map.maHeThongRap));
                   }}
                 >
-                  <img className="w-[40px]" src={map.logo} alt="..." />
+                  <img
+                    className="pr-[8px]  sm:!w-[40px]"
+                    src={map.logo}
+                    alt="..."
+                  />
                 </button>
               </div>
             );
@@ -239,7 +250,9 @@ export const HomeTemplate = () => {
                     alt="..."
                   />
                   <div className="ml-2">
-                    <p className="font-bold">{map?.tenCumRap}</p>
+                    <p className="font-bold text-[5px] sm:text-[16px]">
+                      {map?.tenCumRap}
+                    </p>
                     <p className="">{map?.diaChi.substring(0, 20)}...</p>
                   </div>
                 </div>
@@ -249,6 +262,7 @@ export const HomeTemplate = () => {
         </div>
         {/* end cua cum rap */}
         {/* head cua lich chieu theo he thong */}
+
         <div
           className={cn(
             style.customScrollbar,
@@ -299,6 +313,138 @@ export const HomeTemplate = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </div>
+
+      {/* Cum rap for mobile */}
+      <div className="flex flex-col gap-2 xl:hidden">
+        <div className="flex">
+          {/* head cua he thong rap */}
+          <div className="ml-2 w-[50px] !border-r-4 border-[#c85661]">
+            {/* phải có border-r-4 trước rồi mới dùng border màu được */}
+            {heThongRap?.map((map) => {
+              return (
+                <div
+                  key={map.maHeThongRap}
+                  className="w-[40px] py-2 hover:scale-110 transition ease-in-out duration-500"
+                >
+                  <button
+                    className="w-[40px]"
+                    onClick={() => {
+                      dispatchOrigin(
+                        quanLyRapActions.LuuMaRap(map.maHeThongRap)
+                      );
+                    }}
+                  >
+                    <img
+                      className="pr-[8px]  sm:!w-[40px]"
+                      src={map.logo}
+                      alt="..."
+                    />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+          {/* End cua he thong rap */}
+
+          {/* head cua cum rap */}
+          <div
+            className={cn(
+              style.customScrollbar,
+              "w-50% ml-2  pr-4 h-[60vh] overflow-y-auto w-full  !border-r-4 border-[#c85661]"
+            )}
+          >
+            {cumRap?.map((map) => {
+              return (
+                <div
+                  key={map?.maCumRap}
+                  className={cn(
+                    "mb-3 cursor-pointer hover:bg-slate-300 transition ease-in-out duration-500 rounded",
+                    { "bg-slate-300": map.maCumRap == tenCumRapHientai }
+                  )}
+                  onClick={() => {
+                    dispatchOrigin(quanLyRapActions.LuuCumRap(map.maCumRap));
+                  }}
+                >
+                  <div className="ml-2 flex py-2 items-center">
+                    <img
+                      className="w-[40px] h-[40px] "
+                      src={
+                        lichChieuTheoHeThong?.[0].lstCumRap.filter(
+                          (prd) => prd?.maCumRap === map.maCumRap
+                        )?.[0]?.hinhAnh || "/image/body/theater.jpg"
+                      }
+                      alt="..."
+                    />
+                    <div className="ml-2">
+                      <p className="font-bold text-[5px] sm:text-[16px]">
+                        {map?.tenCumRap}
+                      </p>
+                      <p className="">{map?.diaChi.substring(0, 20)}...</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          {/* end cua cum rap */}
+        </div>
+        {/* head cua lich chieu theo he thong */}
+        <div className="w-full">
+          <div
+            className={cn(
+              style.customScrollbar,
+              "w-[full] h-[60vh]  overflow-y-auto relative"
+            )}
+          >
+            <div
+              className="w-full"
+              style={{ textAlign: "right", position: "sticky", top: 0 }}
+            >
+              <div className=" sticky top-0">
+                <Space direction="vertical">
+                  <DatePicker
+                    style={{ background: "beige" }}
+                    onChange={onChange}
+                    placeholder={ngayHienTai}
+                  />
+                  {/* Note: chinh mau placeholder */}
+                </Space>
+              </div>
+            </div>
+            <div className="w-full">
+              <hr style={{ border: "2px solid #c85661", width: "100%" }} />
+              {DSPhimTheoNgay.map((phim) => {
+                return (
+                  <div key={phim.maCuaPhim}>
+                    <div className="w-full pl-[50px]">
+                      <div className="flex mb-2 mt-2 px-2">
+                        <img className="w-[50px]" src={phim?.hinhPhim} />
+                        <div>
+                          <p className="ml-2 font-bold">{phim?.tenPhim}</p>
+                          <p className="ml-2 font-bold mt-2">
+                            <span className=" text-green-700">Giờ chiếu:</span>{" "}
+                            {phim.gioChieu.map((gio) => (
+                              <span
+                                key={gio.maLichChieu}
+                                className=" text-red-500 bg-[rgba(248,248,248,0.8)] m-2 "
+                              >
+                                {gio.gioChieu}-{gio.rapChieu}{" "}
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                      </div>
+                      <hr
+                        style={{ border: "2px solid #c85661", width: "100%" }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
