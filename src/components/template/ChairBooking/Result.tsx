@@ -15,41 +15,127 @@ const Result = () => {
   const { ChairBooking, isDatVe } = useTicket();
   const dispatchOrigin = useDispatch();
   const dispatch = useAppDispatch();
-  const { maLichChieu } = useTheaterData();
-  let VeDatInfo = [];
+  const { maLichChieu, InfoPhim, tenCumRapHientai } = useTheaterData();
+  console.log("InfoPhim: ", InfoPhim);
+  console.log("tenHeThongRapHienTai: ", tenCumRapHientai);
+
+  const VeDatInfo = [];
   ChairBooking?.map((ve) => {
     VeDatInfo.push({ maGhe: ve.maGhe, giaVe: ve.giaVe });
   });
-  let DanhSachVe: DanhSachVe = {
+  const DanhSachVe: DanhSachVe = {
     maLichChieu: maLichChieu,
     danhSachVe: VeDatInfo,
   };
   useEffect(() => {}, [ChairBooking]);
   return (
-    <div>
+    <div className={cn("h-[600px]", style.chainsawBG)} style={{}}>
       <h2 className="text-center">DANH SÁCH GHẾ</h2>
       <div className="flex flex-col">
         <button
           className={cn(style.booked, "py-2 px-1 border border-grey-500 mt-3")}
+          style={{
+            borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
+          }}
         >
           Ghế đã đặt
         </button>
         <button
-          className={cn(style.booking, "py-2 px-1 border border-grey-500 mt-3")}
+          className={cn(
+            style.booking,
+            "py-2 px-1 border border-grey-500 rounded-2xl mt-3"
+          )}
+          style={{
+            borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
+          }}
         >
           Ghế đang chọn
         </button>
-        <div>
-          <button className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-yellow-500">
+        <div className="flex gap-2">
+          <button
+            className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-yellow-500 rounded-xl"
+            style={{
+              borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
+            }}
+          >
             Ghế VIP
           </button>
-          <button className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-slate-400">
+          <button
+            className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-slate-400 rounded-xl"
+            style={{
+              borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
+            }}
+          >
             Ghế thường
           </button>
         </div>
       </div>
+      {/* //ticket  */}
+      <div className="flex flex-col gap-1 ">
+        <div className={cn(style.ticket)}>
+          <div className={cn(style.ticket_pole_right)}></div>
+          <div className={cn(style.ticket_pole_left)}></div>
 
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-10">
+          <div className="">
+            <p>Tên Phim: {InfoPhim?.tenPhim}</p>
+          </div>
+          <div className="flex justify-between">
+            <div className="">
+              <p>Ngày chiếu:</p>
+              <p>
+                {InfoPhim?.ngayKhoiChieu.substring(8, 10)}-
+                {InfoPhim?.ngayKhoiChieu.substring(5, 7)}-
+                {InfoPhim?.ngayKhoiChieu.substring(0, 4)}
+              </p>
+            </div>
+            <div className="">
+              <p>Giờ chiếu:</p>
+              <p>{InfoPhim?.ngayKhoiChieu.substring(11, 16)}</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <p>Tên cụm rạp:</p>
+            <p className="uppercase">{tenCumRapHientai}</p>
+          </div>
+          <div className="flex gap-2">
+            <p>Giá:</p>
+            <p>
+              {ChairBooking.reduce((total, ghe) => (total += ghe?.giaVe), 0)}{" "}
+              VND
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <p>Ghế:</p>
+            <div className="flex gap-2">
+              {ChairBooking?.map((ghe) => (
+                <div
+                  className={cn({
+                    "text-orange-500 font-bold": ghe.loaiGhe === "Vip",
+                  })}
+                >
+                  {ghe?.stt},
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* //QR  */}
+        <div className={cn(style.ticket_bottom)}>
+          <div className={cn(style.ticketQR, "relative pb-2")}>
+            <div className={cn(style.ticket_pole_rightbot)}></div>
+            <div className={cn(style.ticket_pole_leftbot)}></div>
+
+            <img
+              className={cn("relative w-[300px] h-[100px]")}
+              src="/image/body/ticketQR.jpg"
+              alt="QR"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Table  */}
+      {/* <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-10">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">
@@ -103,7 +189,7 @@ const Result = () => {
             <td></td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
       {ChairBooking.length != 0 ? (
         <Button
           loading={isDatVe}

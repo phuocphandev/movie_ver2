@@ -23,7 +23,7 @@ const TicketTemp = () => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId, 10)));
   }, []);
   console.log(InfoPhim);
-  let DSNgay: string[] = [];
+  const DSNgay: string[] = [];
   InfoPhim?.heThongRapChieu
     .filter((rap) => rap?.maHeThongRap == tenHeThongRapHienTai)[0]
     ?.cumRapChieu.filter((cumrap) => cumrap?.maCumRap == tenCumRapHientai)[0]

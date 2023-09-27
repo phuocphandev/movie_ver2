@@ -14,10 +14,10 @@ export const ChairList = () => {
   const { InfoRap, ChairBooking } = useTicket();
   console.log("ChairBooking", ChairBooking);
 
-  let newArr = [];
+  const newArr = [];
   let indexArr = [];
   let index = 0;
-  for (var i = 0; i <= InfoRap?.danhSachGhe.length - 1; i++) {
+  for (let i = 0; i <= InfoRap?.danhSachGhe.length - 1; i++) {
     indexArr.push(InfoRap?.danhSachGhe[i]);
     index++;
     if (index == 10) {
@@ -65,7 +65,7 @@ export const ChairList = () => {
           })}
         </div>
       ) : (
-        <div className="flex items-center flex justify-center">
+        <div className="items-center flex justify-center">
           <span className="loading loading-ring loading-lg"></span>
           <span>Đang lấy sơ đồ ghế!</span>
         </div>
