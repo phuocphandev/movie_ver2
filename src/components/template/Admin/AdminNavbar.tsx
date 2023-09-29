@@ -20,7 +20,7 @@ export const AdminNavbar = () => {
             <aside id="logo-sidebar" className={cn("fixed top-0 left-0 z-40 w-64 h-screen transition-transform sm:translate-x-0", { "-translate-x-full": isToggled })} aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800" >
                     <a  className="flex items-center pl-2.5 mb-5  cursor-pointer"  onClick={()=>{navigate('/')}}>
-                        <img src="/image/navbar/Logo.png" className="h-6 mr-3 sm:h-7" alt="Logo" />
+                        <img src="/image/navbar/navbar_logo.png" className="h-6 mr-3 sm:h-7" alt="Logo" />
                         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Movids</span>
                     </a>
                     <ul className="space-y-2 font-medium">

@@ -7,7 +7,7 @@ export const PageFooter = () => {
         <div>
           <div className="flex flex-col">
             <img
-              src="/image/navbar/logo.png"
+              src="image/navbar/logo.png"
               alt="logo"
               className="h-20 mr-2 pt-1 w-20"
             />
