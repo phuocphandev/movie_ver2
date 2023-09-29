@@ -12,7 +12,6 @@ export const ChairList = () => {
   const dispatch = useDispatch();
   const { isLayThongTin } = useTicket();
   const { InfoRap, ChairBooking } = useTicket();
-  console.log("ChairBooking", ChairBooking);
 
   const newArr = [];
   let indexArr = [];

@@ -21,13 +21,11 @@ export const xoaNguoiDungThunk = createAsyncThunk(
   ) => {
     try {
       const data = await QuanTri.xoaNguoiDung(payload.tkXoa);
-      console.log("data xoa ne", data);
       dispatch(layDSNguoiDungThunk(payload.pageNow));
       return data.data.content;
     } catch (error) {
       rejectWithValue(error);
       toast.error(error.response.data.content);
-      console.log("Error nè", error);
     }
   }
 );

@@ -42,7 +42,6 @@ export const QuanTriSlice = createSlice({
       })
       .addCase(xoaNguoiDungThunk.fulfilled, (state, { payload }) => {
         toast.success(payload);
-        console.log("xoaThanhcong ", payload);
         state.isDelete = false;
       })
       .addCase(xoaNguoiDungThunk.rejected, (state, _) => {

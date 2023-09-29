@@ -2,10 +2,6 @@ import { Outlet } from "react-router-dom";
 import NavBar from "../template/PageHeader/NavBar";
 import PageFooter from "../template/PageFooter/PageFooter";
 
-import { Player } from "@lottiefiles/react-lottie-player";
-import { useSelector } from "react-redux";
-import { RootState } from "store";
-
 export const HomeLayout = () => {
 
     //BUG

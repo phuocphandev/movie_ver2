@@ -32,16 +32,12 @@ const quanLyNguoiDungSlice = createSlice({
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.isLogin=true;
         state.accessToken = payload.accessToken;
-        // if (payload) {
-          console.log("loginPayload: ", payload);
         localStorage.setItem("USER", payload.accessToken);
-        // console.log("payload", payload);
         state.user = payload;
         // }
       })
       .addCase(getUserThunk.fulfilled, (state, { payload }) => {
         state.user = payload;
-        // console.log("getUser: ", payload);
       })
       .addCase(updateUserThunk.pending, (state, _) => {
         state.isUpdateUser = true;

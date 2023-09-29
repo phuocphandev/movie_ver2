@@ -22,7 +22,6 @@ const TicketTemp = () => {
   useEffect(() => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId, 10)));
   }, []);
-  console.log("Infophim ben trang ticket ne:",InfoPhim);
   const DSNgay: string[] = [];
   InfoPhim?.heThongRapChieu
     .filter((rap) => rap?.maHeThongRap == tenHeThongRapHienTai)[0]
@@ -35,7 +34,6 @@ const TicketTemp = () => {
         return DSNgay.push(ngay?.ngayChieuGioChieu.substring(0, 10));
       }
     });
-  console.log("DSNgay", DSNgay);
 
   return (
     <div className="w-[80vw] mb-20 m-auto">

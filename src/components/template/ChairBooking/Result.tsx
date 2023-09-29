@@ -22,9 +22,7 @@ const Result = () => {
     ngayHienTai,
     gioChieuHienTai,
   } = useTheaterData();
-  console.log("InfoPhim: ", InfoPhim);
-  console.log("tenHeThongRapHienTai: ", tenCumRapHientai);
-  console.log("chairbooking nè:,",ChairBooking)
+
 
   const VeDatInfo = [];
   ChairBooking?.map((ve) => {

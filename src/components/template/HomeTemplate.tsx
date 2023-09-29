@@ -47,7 +47,6 @@ export const HomeTemplate = () => {
     const lichTheoRap = lichChieuTheoHeThong?.[0].lstCumRap.filter(
       (prd) => prd.maCumRap === tenCumRapHientai
     );
-    console.log("lichTheoRap: ", lichTheoRap);
     lichTheoRap?.[0]?.danhSachPhim?.map((phim) => {
       let ds = phim.lstLichChieuTheoPhim?.filter(
         (lichchieu) =>

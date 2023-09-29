@@ -40,7 +40,6 @@ export const AdminUserTemp = () => {
     setIsModalOpen(false);
   };
   const { DSUser, isDelete, timKiemUser, UpdateUser } = useAdmin();
-  console.log("TimKiemUser: ", timKiemUser);
   //Kỹ thuật đổi tên key: xóa (tách phần tử cần xóa và những phần tử còn lại) => thêm vào
   const timKiemUserEdit = timKiemUser?.map(({ soDT, ...rest }) => {
     return { ...rest, soDt: soDT };
@@ -60,7 +59,6 @@ export const AdminUserTemp = () => {
     }
   }
   timKiemUserEditSort.push(indexArr);
-  console.log("TimKiemUserSort: ", timKiemUserEditSort);
   //================================
 
   const dispatch = useAppDispatch();
@@ -83,8 +81,7 @@ export const AdminUserTemp = () => {
     } else {
       setTrangTimKiem(page);
     }
-    console.log("Page dang co ne: ", page);
-    console.log("timKiemUserEditSort:", timKiemUserEditSort);
+  
   };
   //form-modal
   const {
@@ -96,7 +93,6 @@ export const AdminUserTemp = () => {
     mode: "onChange",
     resolver: zodResolver(AddUserSchema),
   });
-  // console.log("selectOption ne", selectOption);
   const onSubmit: SubmitHandler<AddUserSchemaType> = async (value) => {
     if (!UpdateUser) {
       if (selectOption == "QuanTri" || selectOption == "KhachHang") {

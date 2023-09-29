@@ -54,7 +54,6 @@ export const quanLyRapSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(quanLyRapThunk.fulfilled, (state, { payload }) => {
-        // console.log(payload)
         state.heThongRap = payload;
       })
       .addCase(quanLyCumRapThunk.fulfilled, (state, { payload }) => {

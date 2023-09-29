@@ -17,10 +17,8 @@ export const DetailTemp = () => {
   const dispatch = useAppDispatch();
   //get ID from param
   const { movieId } = useParams<{ movieId: string }>();
-  // console.log("id:", movieId  );
   //Lấy ds film
   const { InfoPhim } = useTheaterData();
-  console.log("info Phim: ", InfoPhim);
   const navigate = useNavigate()
   useEffect(() => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId)));
@@ -31,12 +29,10 @@ export const DetailTemp = () => {
 
   //Tách link youtube:
   const videoID= InfoPhim?.trailer.substring(InfoPhim?.trailer.indexOf('=') + 1);
-  console.log(videoID);
   const videoLink=`https://www.youtube.com/embed/${videoID}`
 
   //ticketPath:
   const ticketPath = generatePath(PATH.ticket,{ movieId: movieId});
-  console.log(ticketPath);
   
   return (
     <div className="!w-[90vw] pt-10 pb-10 text-white flex-col flex gap-10">

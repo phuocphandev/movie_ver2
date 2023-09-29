@@ -37,7 +37,6 @@ export const updateUserThunk = createAsyncThunk(
       await quanLyNguoiDung.updateUser(payload);
       await new Promise((resolve)=>setTimeout(resolve,1000))
       dispatch(getUserThunk())
-      // console.log("update data: ", data)
     } catch (error) {
       rejectWithValue(error);
     }

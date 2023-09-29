@@ -17,7 +17,6 @@ export const NavBar = () => {
   };
   const dispatch = useDispatch()
   const {accessToken,user} = useAuth()
-  // console.log('user:', user);
   
   return (
     <nav className="bg-transparent w-full z-20 top-0 left-0 h-[6vh]">
