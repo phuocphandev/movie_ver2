@@ -1,4 +1,4 @@
-import {Spin as SpinA, SpinProps, SpinProps as SpinPropsA} from 'antd'
+import {Spin as SpinA,  SpinProps as SpinPropsA} from 'antd'
 type SpinObject = {
     (propsA:SpinPropsA):JSX.Element,
 }
