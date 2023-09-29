@@ -27,10 +27,8 @@ const TicketTemp = () => {
     .filter((rap) => rap?.maHeThongRap == tenHeThongRapHienTai)[0]
     ?.cumRapChieu.filter((cumrap) => cumrap?.maCumRap == tenCumRapHientai)[0]
     ?.lichChieuPhim?.map((ngay) => {
-      let chiso = DSNgay.findIndex(
-        (item) => item == ngay?.ngayChieuGioChieu.substring(0, 10)
-      );
-      if ((chiso = -1)) {
+      const index = DSNgay.findIndex((item) => item == ngay?.ngayChieuGioChieu.substring(0, 10) );
+      if ((index == -1)) {
         return DSNgay.push(ngay?.ngayChieuGioChieu.substring(0, 10));
       }
     });
