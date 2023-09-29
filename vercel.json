@@ -1,8 +1,5 @@
 {
-    "routes":[
-        {
-            "src": "/(.*)",
-            "dest": "./src/components/layouts/HomeLayout.tsx"
-        }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
     ]
-}
+  }

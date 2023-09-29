@@ -23,7 +23,7 @@ export const NavBar = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <button onClick={()=>{navigate('/')}} className="flex items-center">
           <img
-            src="image/navbar/navbar_logo.png"
+            src='../../../public/image/navbar/navbar_logo.png'
             className="h-10 mr-2 pt-1"
             alt="Logo"
           />

@@ -15,14 +15,14 @@ export type Ghe = {
 type QuanLyDatVeInitialState = {
   InfoRap?: DSGhe;
   ChairBooking?: Ghe[];
-  isDatVe?:boolean;
-  isLayThongTin?:boolean,
+  isDatVe?: boolean;
+  isLayThongTin?: boolean;
 };
 
 const initialState: QuanLyDatVeInitialState = {
   ChairBooking: [],
-  isDatVe:false,
-  isLayThongTin:false,
+  isDatVe: false,
+  isLayThongTin: false,
 };
 
 export const quanLyDatVeSlice = createSlice({
@@ -42,30 +42,33 @@ export const quanLyDatVeSlice = createSlice({
         state.ChairBooking.push(actions.payload);
       }
     },
+    deleteChairBooking: (state) => {
+      state.ChairBooking = [];
+    },
   },
   extraReducers: (builder) => {
     builder
-    .addCase(quanLyDatVeThunk.pending,(state,_)=>{
-      state.isLayThongTin = true;
-    })
-    .addCase(quanLyDatVeThunk.fulfilled, (state, { payload }) => {
-      state.InfoRap = payload;
-      state.isLayThongTin = false;
-    })
-    .addCase(quanLyDatVeThunk.rejected,(state,_)=>{
-      state.isLayThongTin = false;
-    })
-    .addCase(datVeThunk.pending,(state,_)=>{
-      state.isDatVe=true;
-    })
-    .addCase(datVeThunk.fulfilled,(state,_)=>{
-      state.isDatVe = false;
-      toast.success('Đặt vé thành công');
-      state.ChairBooking=[];
-    })
-    .addCase(datVeThunk.rejected,(state,_)=>{
-      state.isDatVe=false;
-    })
+      .addCase(quanLyDatVeThunk.pending, (state, _) => {
+        state.isLayThongTin = true;
+      })
+      .addCase(quanLyDatVeThunk.fulfilled, (state, { payload }) => {
+        state.InfoRap = payload;
+        state.isLayThongTin = false;
+      })
+      .addCase(quanLyDatVeThunk.rejected, (state, _) => {
+        state.isLayThongTin = false;
+      })
+      .addCase(datVeThunk.pending, (state, _) => {
+        state.isDatVe = true;
+      })
+      .addCase(datVeThunk.fulfilled, (state, _) => {
+        state.isDatVe = false;
+        toast.success("Đặt vé thành công");
+        state.ChairBooking = [];
+      })
+      .addCase(datVeThunk.rejected, (state, _) => {
+        state.isDatVe = false;
+      });
   },
 });
 export const { reducer: quanLyDatVeReducers, actions: quanLyDatVeActions } =
