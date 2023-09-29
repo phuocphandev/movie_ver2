@@ -8,11 +8,13 @@ type quanLyNguoiDung = {
   user?: User | UserInfo;
   accessToken?: string;
   isUpdateUser?: boolean;
+  isLogin?: boolean;
 };
 const initialState: quanLyNguoiDung = {
   user: undefined,
   accessToken: localStorage.getItem("USER"),
   isUpdateUser: false,
+  isLogin: false,
 };
 const quanLyNguoiDungSlice = createSlice({
   name: "quanLyNguoiDung",
@@ -21,18 +23,21 @@ const quanLyNguoiDungSlice = createSlice({
     logOut: (state) => {
       localStorage.removeItem("USER");
       state.accessToken = undefined;
+      state.user = undefined;
       toast.success("Log out success!");
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
+        state.isLogin=true;
         state.accessToken = payload.accessToken;
-        if (payload) {
-          localStorage.setItem("USER", payload.accessToken);
-          // console.log("payload", payload);
-          state.user = payload;
-        }
+        // if (payload) {
+          console.log("loginPayload: ", payload);
+        localStorage.setItem("USER", payload.accessToken);
+        // console.log("payload", payload);
+        state.user = payload;
+        // }
       })
       .addCase(getUserThunk.fulfilled, (state, { payload }) => {
         state.user = payload;

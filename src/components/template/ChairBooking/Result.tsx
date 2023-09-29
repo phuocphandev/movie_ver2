@@ -1,6 +1,4 @@
 import { useTicket } from "hooks/useTicket";
-import { useDispatch } from "react-redux";
-import { quanLyDatVeActions } from "store/quanLyDatVe/slice";
 import style from "./index.module.scss";
 import cn from "classnames";
 import { useTheaterData } from "hooks/useTheaterData";
@@ -9,15 +7,24 @@ import { useEffect } from "react";
 import { useAppDispatch } from "store";
 import { datVeThunk, quanLyDatVeThunk } from "store/quanLyDatVe/thunk";
 import { Button } from "components/ui";
+import { useAuth } from "hooks/useAuth";
+import { toast } from "react-toastify";
 // import { baiTapDatVeActions } from '../storeToolkit/BTDatVe/slice'
 
 const Result = () => {
   const { ChairBooking, isDatVe } = useTicket();
-  const dispatchOrigin = useDispatch();
+  const { isLogin } = useAuth();
   const dispatch = useAppDispatch();
-  const { maLichChieu, InfoPhim, tenCumRapHientai } = useTheaterData();
+  const {
+    maLichChieu,
+    InfoPhim,
+    tenCumRapHientai,
+    ngayHienTai,
+    gioChieuHienTai,
+  } = useTheaterData();
   console.log("InfoPhim: ", InfoPhim);
   console.log("tenHeThongRapHienTai: ", tenCumRapHientai);
+  console.log("chairbooking nè:,",ChairBooking)
 
   const VeDatInfo = [];
   ChairBooking?.map((ve) => {
@@ -29,11 +36,14 @@ const Result = () => {
   };
   useEffect(() => {}, [ChairBooking]);
   return (
-    <div className={cn("h-[600px]", style.chainsawBG)} style={{}}>
-      <h2 className="text-center">DANH SÁCH GHẾ</h2>
+    <div className={cn("px-2 py-4 overflow-hidden border-orange-500 border-[8px] rounded-2xl", style.chainsawBG)} style={{}}>
+      <h2 className="text-center  font-bold text-xl">DANH SÁCH GHẾ</h2>
       <div className="flex flex-col">
         <button
-          className={cn(style.booked, "py-2 px-1 border border-grey-500 mt-3")}
+          className={cn(
+            style.booked,
+            "py-2 px-1 border border-grey-500 mt-3 w-[70%] m-auto"
+          )}
           style={{
             borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
           }}
@@ -43,7 +53,7 @@ const Result = () => {
         <button
           className={cn(
             style.booking,
-            "py-2 px-1 border border-grey-500 rounded-2xl mt-3"
+            "py-2 px-1 border border-grey-500 rounded-2xl mt-3 w-[70%] m-auto"
           )}
           style={{
             borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
@@ -53,7 +63,7 @@ const Result = () => {
         </button>
         <div className="flex gap-2">
           <button
-            className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-yellow-500 rounded-xl"
+            className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-yellow-500 rounded-xl m-auto"
             style={{
               borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
             }}
@@ -61,7 +71,7 @@ const Result = () => {
             Ghế VIP
           </button>
           <button
-            className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-slate-400 rounded-xl"
+            className="w-[50%] py-2 px-1 border border-grey-500 mt-3 bg-slate-400 rounded-xl m-auto"
             style={{
               borderRadius: "0% 0% 50% 50% / 0% 0% 50% 50% ",
             }}
@@ -71,62 +81,67 @@ const Result = () => {
         </div>
       </div>
       {/* //ticket  */}
-      <div className="flex flex-col gap-1 ">
-        <div className={cn(style.ticket)}>
+      <div className={cn(style.allTicket,"flex flex-col gap-1 h-[60%] w-[100%] sm:w-[80%] 2xl:max-w-[400px] m-auto mt-10 text-[1em]",{[style.active] : (ChairBooking.length==0?false:true)})}>
+        <div className={cn(style.ticket, "h-[80%] text-[1em]")}>
           <div className={cn(style.ticket_pole_right)}></div>
           <div className={cn(style.ticket_pole_left)}></div>
 
-          <div className="">
-            <p>Tên Phim: {InfoPhim?.tenPhim}</p>
+          <div className="text-[1em]">
+            <p>
+              <span className="text-[#ab2d95] font-bold">Tên Phim:</span>{" "}
+              {InfoPhim?.tenPhim}
+            </p>
           </div>
-          <div className="flex justify-between">
-            <div className="">
-              <p>Ngày chiếu:</p>
+          <div className="flex flex-col justify-between">
+            <div className="text-[1em] flex gap-2">
+              <p className="text-[#ab2d95] font-bold">Ngày chiếu:</p>
               <p>
-                {InfoPhim?.ngayKhoiChieu.substring(8, 10)}-
-                {InfoPhim?.ngayKhoiChieu.substring(5, 7)}-
-                {InfoPhim?.ngayKhoiChieu.substring(0, 4)}
+                {ngayHienTai?.substring(8, 10)}-{ngayHienTai?.substring(5, 7)}-
+                {ngayHienTai?.substring(0, 4)}
               </p>
             </div>
-            <div className="">
-              <p>Giờ chiếu:</p>
-              <p>{InfoPhim?.ngayKhoiChieu.substring(11, 16)}</p>
+            <div className="text-[1em] flex gap-2">
+              <p className="text-[#ab2d95] font-bold">Giờ chiếu:</p>
+              <p>{gioChieuHienTai}</p>
             </div>
           </div>
-          <div className="flex gap-2">
-            <p>Tên cụm rạp:</p>
+          <div className="flex text-[1em]">
+            <p className="text-[#ab2d95] font-bold">Tên cụm rạp:</p>
             <p className="uppercase">{tenCumRapHientai}</p>
           </div>
-          <div className="flex gap-2">
-            <p>Giá:</p>
+          <div className="flex gap-2 text-[1em]">
+            <p className="text-[#ab2d95] font-bold">Giá:</p>
             <p>
               {ChairBooking.reduce((total, ghe) => (total += ghe?.giaVe), 0)}{" "}
               VND
             </p>
           </div>
-          <div className="flex gap-2">
-            <p>Ghế:</p>
-            <div className="flex gap-2">
+          <div className="flex gap-2 text-[1em]">
+            <p className="text-[#ab2d95] font-bold">Ghế:</p>
+            {/* Flex wrap để xuống hàng khi sd flex */}
+            <div className="flex text-[1em] flex-wrap gap-1">
               {ChairBooking?.map((ghe) => (
-                <div
+                <p
                   className={cn({
                     "text-orange-500 font-bold": ghe.loaiGhe === "Vip",
                   })}
                 >
                   {ghe?.stt},
-                </div>
+                </p>
               ))}
             </div>
           </div>
         </div>
         {/* //QR  */}
-        <div className={cn(style.ticket_bottom)}>
-          <div className={cn(style.ticketQR, "relative pb-2")}>
+        <div className={cn(style.ticket_bottom, "")}>
+          <div className={cn("relative pb-2")}>
             <div className={cn(style.ticket_pole_rightbot)}></div>
             <div className={cn(style.ticket_pole_leftbot)}></div>
 
             <img
-              className={cn("relative w-[300px] h-[100px]")}
+              className={cn(
+                "relative w-[90%] h-[50%] flex justify-center m-auto"
+              )}
               src="/image/body/ticketQR.jpg"
               alt="QR"
             />
@@ -190,25 +205,32 @@ const Result = () => {
           </tr>
         </tbody>
       </table> */}
-      {ChairBooking.length != 0 ? (
-        <Button
-          loading={isDatVe}
-          className="w-full py-3 bg-green-500 rounded-xl"
-          type="primary"
-          htmlType="submit"
-          onClick={() => {
-            dispatch(datVeThunk(DanhSachVe))
-              .unwrap()
-              .then(() => {
-                dispatch(quanLyDatVeThunk(maLichChieu));
-              });
-          }}
-        >
-          Đặt Vé
-        </Button>
-      ) : (
-        ""
-      )}
+      <div className="my-3">
+        {ChairBooking.length != 0 ? (
+          <Button
+            loading={isDatVe}
+            className="py-3 bg-green-500 rounded-xl w-full"
+            size="middle"
+            type="primary"
+            htmlType="submit"
+            onClick={() => {
+              if (isLogin) {
+                dispatch(datVeThunk(DanhSachVe))
+                  .unwrap()
+                  .then(() => {
+                    dispatch(quanLyDatVeThunk(maLichChieu));
+                  });
+              } else {
+                toast.error("Vui lòng đăng nhập tài khoản!");
+              }
+            }}
+          >
+            Đặt Vé
+          </Button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

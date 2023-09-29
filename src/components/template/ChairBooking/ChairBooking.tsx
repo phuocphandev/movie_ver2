@@ -16,7 +16,7 @@ export const ChairBooking = () => {
   }, [maLichChieu]);
 
   return (
-    <div className="m-auto mt-5 border relative">
+    <div className="m-auto mt-5 relative">
       <div className="absolute top-0">
 
       </div>
@@ -37,7 +37,7 @@ export const ChairBooking = () => {
 
           <ChairList />
         </div>
-        <div className="xl:col-span-1 p-2 bg-orange-500 text-white mt-3 rounded-xl">
+        <div className="xl:col-span-1 p-2 text-white mt-3 rounded-xl">
           {/* Kết quả đặt vé */}
           <Result />
         </div>

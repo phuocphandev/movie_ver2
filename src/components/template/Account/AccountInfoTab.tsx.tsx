@@ -8,20 +8,23 @@ import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AccountSchema, AccountSchemaType } from "schema";
 import { useAppDispatch } from "store";
-import { updateUserThunk } from "store/quanLyNguoiDung/thunk";
+import { getUserThunk, updateUserThunk } from "store/quanLyNguoiDung/thunk";
 import { toast } from "react-toastify";
+import { UserInfo } from "types/QuanLyNguoiDung";
+
 
 const AccountInfoTab = () => {
-  const { user } = useAuth(); 
+  let { user } = useAuth(); 
+  user = user as UserInfo;
   const navigate = useNavigate();
   const { reset, register, handleSubmit,formState:{errors} } = useForm<AccountSchemaType>({
     mode:'onChange', resolver: zodResolver(AccountSchema),
   });
   const dispatch = useAppDispatch()
   const {isUpdateUser}= useAuth()
-  console.log("Đây là UserINFOTAB nè:",user)
 
   useEffect(() => {
+    dispatch(getUserThunk());
     reset(
         {
        ...user,

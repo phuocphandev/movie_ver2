@@ -10,8 +10,6 @@ import Ticket from "pages/ticket/Ticket";
 import { AdminFilm, AdminUser } from "pages/admin";
 
 
-// import Register from "pages/account/Register";
-
 export const router: RouteObject[] = [
   {
     element: <AuthLayout />,

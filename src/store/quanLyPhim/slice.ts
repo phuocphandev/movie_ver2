@@ -2,14 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { quanLyPhimThunk } from "./thunk";
 import { Movie } from "types/QuanLyPhim";
 
-
 type QuanLyPhimInitialState = {
   movieList: Movie[];
   isFetchingMovieList: boolean;
 };
 const initialState: QuanLyPhimInitialState = {
   movieList: [],
-  isFetchingMovieList: false,
+  isFetchingMovieList: true,
 };
 
 export const quanLyPhimSlice = createSlice({
@@ -28,7 +27,6 @@ export const quanLyPhimSlice = createSlice({
         state.movieList = payload;
         state.isFetchingMovieList = false;
       });
-
   },
 });
 

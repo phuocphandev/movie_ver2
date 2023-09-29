@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useAppDispatch } from "store";
 import { getUserThunk } from "store/quanLyNguoiDung/thunk";
 import { UserInfo } from "types/QuanLyNguoiDung";
-
+import style from './index.module.scss'
+import cn from 'classnames'
 export const AccountTicketTab = () => {
   const { user } = useAuth();
   const userInfo = user as UserInfo;
@@ -13,7 +14,7 @@ export const AccountTicketTab = () => {
     dispatch(getUserThunk());
   }, []);
   return (
-    <div className="w-[70vw]">
+    <div className={cn("w-[70vw] overflow-y-auto h-[80vh]", style.customScrollbar)}>
       {userInfo?.thongTinDatVe?.map((thongTinVe) => {
         return (
           <div className="grid grid-cols-3 border-red-500 border-b-4 mt-2 mb-2 text-white text-xl" key={thongTinVe.maVe}>

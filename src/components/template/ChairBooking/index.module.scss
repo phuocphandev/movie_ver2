@@ -10,16 +10,16 @@
 }
 
 .chainsawBG {
-  content: " ";
-  display: block;
-  position: relative;
-  top: 0px;
-  left: 0px;
   width: 100%;
-  height: 12px;
   background: rgb(50, 40, 40);
-  background-repeat: repeat-x;
   background-size: 0px 100%, 9px 27px, 9px 27px;
+}
+.allTicket{
+  transform: translateY(450px);
+  transition: transform 2s ease-in-out;
+}
+.allTicket.active{
+   transform: translateY(0px);
 }
 .ticket {
   font-size: 1rem;
@@ -30,12 +30,15 @@
   margin: 0 5%;
   border-radius: 10px 10px 0 0;
   position: relative;
-  border: 0px none rgb(50, 40, 40);
+  border: 5px solid #ab2d95;
 }
 .ticket_bottom {
   background-color: white;
   margin: 0 5%;
-  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+  height:60%;
+  border: 5px solid #ab2d95;
+  border-top: 1px;
 }
 .ticket_pole_left {
   position: absolute;
@@ -45,7 +48,9 @@
   bottom: -5px;
   left: -5px;
   border-radius: 0 100% 0 0;
-  
+  border-top: 5px solid #ab2d95;
+  border-right: 5px solid #ab2d95;
+
 }
 .ticket_pole_right {
   position: absolute;
@@ -55,19 +60,24 @@
   bottom: -5px;
   right: -5px;
   border-radius: 100% 0 0 0;
-  
+  border-top: 5px solid #ab2d95;
+  border-left: 5px solid #ab2d95;
+
+
 }
 
 .ticket_pole_leftbot {
   position: absolute;
   background: rgb(50, 40, 40);
-  height: 28%;
+  height: 22%;
   width: 10%;
-  top: -5px;
+  top: 0px;
   left: -5px;
   border-radius: 0 0 100% 0;
   border: 0px none rgb(50, 40, 40);
   z-index: 1;
+  border-right: 5px solid #ab2d95;
+  border-bottom: 5px solid #ab2d95;
 }
 
 .ticket_pole_rightbot {
@@ -80,10 +90,7 @@
   border-radius: 0% 0 0 100%;
   border: 0px none rgb(50, 40, 40);
   z-index: 2;
-
+  border-left: 5px solid #ab2d95;
+  border-bottom: 5px solid #ab2d95;
 }
 
-.ticketQR{
-  border-radius: 0 0 10px 10px;
-
-}

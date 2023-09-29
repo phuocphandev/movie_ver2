@@ -1,5 +1,6 @@
 export interface User {
   accessToken?: string;
+  matKhau?:string;
   email?: string;
   hoTen?: string;
   maLoaiNguoiDung?: string;

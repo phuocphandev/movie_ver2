@@ -40,7 +40,7 @@ export const LoginTemplate = () => {
         <div className={styles.formLogo}>
           <span className="flex flex-col item-center">
             <img
-              src="../../../../image/navbar/Logo.png"
+              src="/image/navbar/logo.png"
               className="h-full w-1/5 mr-2 pt-1  self-center"
               alt="Logo"
             />

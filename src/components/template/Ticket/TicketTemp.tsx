@@ -22,7 +22,7 @@ const TicketTemp = () => {
   useEffect(() => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId, 10)));
   }, []);
-  console.log(InfoPhim);
+  console.log("Infophim ben trang ticket ne:",InfoPhim);
   const DSNgay: string[] = [];
   InfoPhim?.heThongRapChieu
     .filter((rap) => rap?.maHeThongRap == tenHeThongRapHienTai)[0]
@@ -48,7 +48,7 @@ const TicketTemp = () => {
             <img
               src={InfoPhim?.hinhAnh}
               alt="..."
-              className="w-full h-full xl:h-1/2"
+              className="w-[60%] h-[100%] xl:h-1/2"
             />
             <p className="text-2xl font-bold text-orange-50 ">
               {InfoPhim?.tenPhim}
