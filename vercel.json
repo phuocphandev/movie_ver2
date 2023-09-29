@@ -1,15 +1,6 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
-  ],
-  "routes": [
-    { "src": "/login", "dest": "/path/to/your/LoginComponent" },
-    { "src": "/register", "dest": "/path/to/your/RegisterComponent" },
-    { "src": "/admin", "dest": "/path/to/your/AdminLayout" },
-    { "src": "/admin/film", "dest": "/path/to/your/AdminFilmComponent" },
-    { "src": "/detail/:movieId", "dest": "/path/to/your/DetailComponent" },
-    { "src": "/ticket/:movieId", "dest": "/path/to/your/TicketComponent" },
-    { "src": "/account", "dest": "/path/to/your/AccountInfoComponent" },
-    { "src": "/(.*)", "dest": "/path/to/your/HomeComponent" }
   ]
+  
 }
