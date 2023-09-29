@@ -35,15 +35,15 @@ export const ChairList = () => {
               <div key={index} className="flex w-full justify-evenly">
                 {prd?.map((ghe: Ghe) => (
                   <button
-                    key={ghe.maGhe}
+                    key={ghe?.maGhe}
                     onClick={() => {
                       dispatch(quanLyDatVeActions.setChairBooking(ghe));
                     }}
                     className={cn(
                       "w-[30px] flex justify-center mt-2  border border-black text-white text-[1rem]",
                       {
-                        "bg-yellow-600": ghe.loaiGhe === "Vip",
-                        "bg-slate-400": ghe.loaiGhe === "Thuong",
+                        "bg-yellow-600": ghe?.loaiGhe === "Vip",
+                        "bg-slate-400": ghe?.loaiGhe === "Thuong",
                         [style.booking]: ChairBooking?.find(
                           (e) => e.maGhe === ghe.maGhe
                         ),
@@ -56,7 +56,7 @@ export const ChairList = () => {
                       boxShadow: "rgba(240, 46, 170, 0.2) 0px 3px 6px, rgba(240, 46, 170, 0.2) 0px 3px 6px",
                     }}
                   >
-                    <p>{ghe.tenGhe}</p>
+                    <p>{ghe?.tenGhe}</p>
                   </button>
                 ))}
               </div>

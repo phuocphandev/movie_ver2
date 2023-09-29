@@ -13,13 +13,14 @@ import { LayThongTinPhimThunk } from "store/quanLyRap/thunk";
 import cn from "classnames";
 import { PATH } from "constant";
 
+
 export const DetailTemp = () => {
   const dispatch = useAppDispatch();
   //get ID from param
   const { movieId } = useParams<{ movieId: string }>();
   //Lấy ds film
   const { InfoPhim } = useTheaterData();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId)));
   }, [dispatch, movieId]);
@@ -28,18 +29,29 @@ export const DetailTemp = () => {
   setTwoToneColor("orange");
 
   //Tách link youtube:
-  const videoID= InfoPhim?.trailer.substring(InfoPhim?.trailer.indexOf('=') + 1);
-  const videoLink=`https://www.youtube.com/embed/${videoID}`
+  const videoID = InfoPhim?.trailer.substring(
+    InfoPhim?.trailer.indexOf("=") + 1
+  );
+  const videoLink = `https://www.youtube.com/embed/${videoID}`;
+
 
   //ticketPath:
-  const ticketPath = generatePath(PATH.ticket,{ movieId: movieId});
+  const ticketPath = "/" + generatePath(PATH.ticket, { movieId: movieId });
+    
   
   return (
     <div className="!w-[90vw] pt-10 pb-10 text-white flex-col flex gap-10">
       {/* TRAILER */}
       <div className="w-[80%] m-auto">
-        <div className="border-[6px] rounded-xl border-orange-400 " style={{boxShadow:" rgba(199, 230, 24, 0.56) 0px 22px 70px 4px"}}>
-          <iframe className="w-full round-xl" height="754" src={videoLink}></iframe>
+        <div
+          className="border-[6px] rounded-xl border-orange-400 "
+          style={{ boxShadow: " rgba(199, 230, 24, 0.56) 0px 22px 70px 4px" }}
+        >
+          <iframe
+            className="w-full round-xl"
+            height="754"
+            src={videoLink}
+          ></iframe>
         </div>
       </div>
       {/*IMG & NAME */}
@@ -90,10 +102,21 @@ export const DetailTemp = () => {
             </span>
           </p>
           <div className="flex gap-5">
-            <button className="px-3 py-2 bg-yellow-500 rounded-3xl" onClick={()=> navigate(ticketPath)} >
+            <button
+              className="px-3 py-2 bg-yellow-500 rounded-3xl"
+              onClick={() => {
+                // navigate("/");
+                navigate(ticketPath, {replace:true});
+              }}
+            >
               Booking
             </button>
-            <button className="px-3 py-2 bg-red-500 rounded-3xl" onClick={()=> navigate('/')}>Home</button>
+            <button
+              className="px-3 py-2 bg-red-500 rounded-3xl"
+              onClick={() => navigate("/")}
+            >
+              Home
+            </button>
           </div>
         </div>
       </div>

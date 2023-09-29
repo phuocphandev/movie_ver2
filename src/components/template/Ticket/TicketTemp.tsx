@@ -22,16 +22,6 @@ const TicketTemp = () => {
   useEffect(() => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId, 10)));
   }, []);
-  const DSNgay: string[] = [];
-  InfoPhim?.heThongRapChieu
-    .filter((rap) => rap?.maHeThongRap == tenHeThongRapHienTai)[0]
-    ?.cumRapChieu.filter((cumrap) => cumrap?.maCumRap == tenCumRapHientai)[0]
-    ?.lichChieuPhim?.map((ngay) => {
-      const index = DSNgay.findIndex((item) => item == ngay?.ngayChieuGioChieu.substring(0, 10) );
-      if ((index == -1)) {
-        return DSNgay.push(ngay?.ngayChieuGioChieu.substring(0, 10));
-      }
-    });
 
   return (
     <div className="w-[80vw] mb-20 m-auto">
@@ -65,16 +55,16 @@ const TicketTemp = () => {
                 <div className="p-3 mt-2 flex gap-5">
                   {InfoPhim?.heThongRapChieu.map((hth) => (
                     <button
-                      key={hth.maHeThongRap}
+                      key={hth?.maHeThongRap}
                       onClick={() => {
                         dispatchOrigin(
-                          quanLyRapActions.LuuMaRap(hth.maHeThongRap)
+                          quanLyRapActions.LuuMaRap(hth?.maHeThongRap)
                         );
                       }}
                     >
                       <div className="flex flex-col justify-center items-center transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110  duration-500">
-                        <img className="w-[40px]" src={hth.logo} alt="..." />
-                        <p>{hth.tenHeThongRap}</p>
+                        <img className="w-[40px]" src={hth?.logo} alt="..." />
+                        <p>{hth?.tenHeThongRap}</p>
                       </div>
                     </button>
                   ))}
@@ -94,24 +84,24 @@ const TicketTemp = () => {
                 <div className="flex gap-5 pl-3 mt-3">
                   {InfoPhim?.heThongRapChieu
                     .filter(
-                      (rap) => rap.maHeThongRap == tenHeThongRapHienTai
+                      (rap) => rap?.maHeThongRap == tenHeThongRapHienTai
                     )[0]
                     ?.cumRapChieu.map((cumrap) => (
                       <button
-                        key={cumrap.maCumRap}
+                        key={cumrap?.maCumRap}
                         onClick={() => {
                           dispatchOrigin(
-                            quanLyRapActions.LuuCumRap(cumrap.maCumRap)
+                            quanLyRapActions.LuuCumRap(cumrap?.maCumRap)
                           );
                         }}
                       >
                         <div className="flex flex-col justify-center items-center">
                           <img
                             className="w-[40px]"
-                            src={cumrap.hinhAnh}
+                            src={cumrap?.hinhAnh}
                             alt="..."
                           />
-                          <p>{cumrap.tenCumRap}</p>
+                          <p>{cumrap?.tenCumRap}</p>
                         </div>
                       </button>
                     ))}
@@ -125,21 +115,6 @@ const TicketTemp = () => {
                 >
                   Chọn lịch chiếu:
                 </p>
-                <div className="text-green-500 p-3">
-                  {DSNgay.map((ngay, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        dispatchOrigin(quanLyRapActions.luuNgay(ngay));
-                      }}
-                    >
-                      <span className="bg-white py-1 px-2 rounded-2xl">
-                        {ngay.substring(8, 10)}-{ngay.substring(5, 7)}-
-                        {ngay.substring(0, 4)}
-                      </span>
-                    </button>
-                  ))}
-                </div>
 
                 <div>
                   <p
@@ -161,27 +136,27 @@ const TicketTemp = () => {
                       )[0]
                       ?.lichChieuPhim?.filter(
                         (ngaychieu) =>
-                          ngaychieu.ngayChieuGioChieu.substring(0, 10) ==
+                          ngaychieu?.ngayChieuGioChieu.substring(0, 10) ==
                           ngayHienTai
                       )
                       ?.map((giochieu) => (
                         <button
-                          key={giochieu.maLichChieu}
+                          key={giochieu?.maLichChieu}
                           onClick={() => {
                             dispatchOrigin(
                               quanLyRapActions.luuGio(
-                                giochieu.ngayChieuGioChieu.substring(11, 16)
+                                giochieu?.ngayChieuGioChieu.substring(11, 16)
                               )
                             );
                             dispatchOrigin(
                               quanLyRapActions.luuMaLichChieu(
-                                giochieu.maLichChieu
+                                giochieu?.maLichChieu
                               )
                             );
                           }}
                         >
                           <span className="bg-white py-1 px-2 rounded-2xl">
-                            {giochieu.ngayChieuGioChieu.substring(11, 16)}
+                            {giochieu?.ngayChieuGioChieu.substring(11, 16)}
                           </span>
                         </button>
                       ))}
@@ -208,15 +183,15 @@ const TicketTemp = () => {
                       )[0]
                       ?.lichChieuPhim?.filter(
                         (ngaychieu) =>
-                          ngaychieu.ngayChieuGioChieu.substring(0, 10) ==
+                          ngaychieu?.ngayChieuGioChieu.substring(0, 10) ==
                             ngayHienTai &&
-                          ngaychieu.ngayChieuGioChieu.substring(11, 16) ==
+                          ngaychieu?.ngayChieuGioChieu.substring(11, 16) ==
                             gioChieuHienTai
                       )
                       ?.map((gioChieu) => (
                         <p key={gioChieu.maLichChieu}>
                           <span className="text-green-500 py-1 px-2 rounded-2xl">
-                            {gioChieu.giaVe}VND
+                            {gioChieu?.giaVe}VND
                           </span>
                         </p>
                       ))}
