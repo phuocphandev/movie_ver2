@@ -2,7 +2,7 @@
     "routes":[
         {
             "src": "/(.*)",
-            "dest": "./src/pages/Home.tsx"
+            "dest": "./src/components/layouts/HomeLayout.tsx"
         }
     ]
 }
