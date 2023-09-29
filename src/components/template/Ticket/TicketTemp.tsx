@@ -12,7 +12,6 @@ const TicketTemp = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
   const dispatchOrigin = useDispatch();
-  console.log("params: ", params)
   const { movieId } = params;
   const {
     InfoPhim,
@@ -24,7 +23,6 @@ const TicketTemp = () => {
   useEffect(() => {
     dispatch(LayThongTinPhimThunk(parseInt(movieId, 10)));
   }, []);
-  console.log(InfoPhim);
   const DSNgay: string[] = [];
   InfoPhim?.heThongRapChieu
     .filter((rap) => rap?.maHeThongRap == tenHeThongRapHienTai)[0]
@@ -37,7 +35,6 @@ const TicketTemp = () => {
         return DSNgay.push(ngay?.ngayChieuGioChieu.substring(0, 10));
       }
     });
-  console.log("DSNgay", DSNgay);
 
   return (
     <div className="w-[80vw] mb-20 m-auto">
