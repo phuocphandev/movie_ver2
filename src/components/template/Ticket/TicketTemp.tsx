@@ -31,7 +31,7 @@ const TicketTemp = () => {
       let index = DSNgay.findIndex(
         (item) => item == ngay?.ngayChieuGioChieu.substring(0, 10)
       );
-      if ((index = -1)) {
+      if ((index == -1)) {
         return DSNgay.push(ngay?.ngayChieuGioChieu.substring(0, 10));
       }
     });
