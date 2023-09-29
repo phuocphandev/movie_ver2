@@ -49,7 +49,7 @@ export const AdminNavbar = () => {
             }}
           >
             <img
-              src="/public/image/navbar/navbar_logo.png"
+              src="public/image/navbar/navbar_logo.png"
               className="h-6 mr-3 sm:h-7"
               alt="Logo"
             />
