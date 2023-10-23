@@ -10,8 +10,8 @@ import { CumRapInfo, InfoPhim, LichChieuTheoHeThong, MovieInfo, RapSys } from "t
 type QuanLyRapInitialState = {
   heThongRap?: RapSys[];
   cumRap?: CumRapInfo[];
-  tenHeThongRapHienTai?: any;
-  tenCumRapHientai?: any;
+  tenHeThongRapHienTai?: string;
+  tenCumRapHientai?: string;
   gioChieuHienTai?:string;
   lichChieuTheoHeThong?: LichChieuTheoHeThong[];
   ngayHienTai?:string,

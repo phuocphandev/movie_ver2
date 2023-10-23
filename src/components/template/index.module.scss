@@ -2,33 +2,42 @@
   overflow: hidden;
   &:hover {
     .hoverOverlayLayer {
-      background: rgba(29, 27, 27, 0.7);
+      // background: rgba(29, 27, 27, 0.7);
+      transform: translateY(0%);
     }
-    .overlayButtonLeft {
-      left: 30%;
-      font-size: 2rem;
-    }
-    .overlayButtonRight {
-      right: 30%;
-      font-size: 2rem;
-    }
+    //   .overlayButtonLeft {
+    //     left: 30%;
+    //     font-size: 2rem;
+    //   }
+    //   .overlayButtonRight {
+    //     right: 30%;
+    //     font-size: 2rem;
+    //   }
   }
 }
 
 .hoverOverlayLayer {
-  content: "";
+  // content: "";
+  // width: 100%;
+  // height: 100%;
+  // background: rgba(67, 63, 62, 0);
+  // position: absolute;
+  // left: 0;
+  // top: 0;
+  // border-radius: 5px;
+  // border: none;
+  // transition: 1000ms;
+  // display: flex;
+  // justify-content: center;
   width: 100%;
   height: 100%;
-  background: rgba(67, 63, 62, 0);
-  z-index: 3;
   position: absolute;
-  left: 0;
   top: 0;
-  border-radius: 5px;
-  border: none;
-  transition: 1000ms;
-  display: flex;
-  justify-content: center;
+  left: 0;
+  z-index: 3;
+  background: rgba(109, 71, 92, 0.8);
+  transform: translateY(100%);
+  transition: all ease-in-out 500ms;
 }
 .overlayButtonLeft {
   position: absolute;
@@ -37,7 +46,7 @@
   transition: 500ms;
   font-size: 0.5rem;
   transform: translateY(-50%);
-}                               
+}
 
 .overlayButtonRight {
   position: absolute;
