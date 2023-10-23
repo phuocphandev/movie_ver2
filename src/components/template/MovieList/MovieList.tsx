@@ -3,7 +3,7 @@ import { generatePath, useNavigate } from "react-router-dom";
 import cn from "classnames";
 import style from "../index.module.scss";
 import { Card } from "components/ui";
-import { EyeOutlined, ShoppingOutlined } from "@ant-design/icons";
+import { ClockCircleOutlined, EyeOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { Movie } from "types/QuanLyPhim";
 //carousel
 import Carousel from "react-multi-carousel";
@@ -95,12 +95,8 @@ export const MovieList = ({ movieList }: MovieListProps) => {
                   </div>
                   {/* Time road */}
                   <div className="time flex gap-5 justify-center mt-5 border-t-2 border-[#e91e63] w-[90%] m-auto mb-5 ">
-                    <div className="flex">
-                      <img
-                        src="/image/MovieList/clock.png"
-                        alt="clock"
-                        className="w-[20px] block"
-                      />
+                    <div className="flex gap-1 text-xl">
+                      <ClockCircleOutlined  className="text-[#e91e63]" />
                       <p className="font-bold text-[var(--tertiary)]">23H</p>
                     </div>
                     <div className="flex">
@@ -111,12 +107,8 @@ export const MovieList = ({ movieList }: MovieListProps) => {
                       />
                       <p className="font-bold text-[var(--tertiary)]">2.5M</p>
                     </div>
-                    <div className="flex">
-                      <img
-                        src="/image/MovieList/enroll.png"
-                        alt="enroll"
-                        className="w-[20px] block"
-                      />
+                    <div className="flex gap-1 text-xl">
+                      <EyeOutlined className="text-[#e91e63] " />
                       <p className="font-bold text-[var(--tertiary)]">3.2k</p>
                     </div>
                   </div>
