@@ -1,0 +1,54 @@
+.CardCSS {
+  overflow: hidden;
+}
+.CardCSS:hover .hoverOverlayLayer {
+  transform: translateY(0%);
+}
+
+.hoverOverlayLayer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background: rgba(109, 71, 92, 0.8);
+  transform: translateY(100%);
+  transition: all ease-in-out 500ms;
+}
+
+.overlayButtonLeft {
+  position: absolute;
+  top: 51%;
+  left: -50px;
+  transition: 500ms;
+  font-size: 0.5rem;
+  transform: translateY(-50%);
+}
+
+.overlayButtonRight {
+  position: absolute;
+  top: 50%;
+  right: -50px;
+  transition: 500ms;
+  font-size: 0.5rem;
+  transform: translateY(-50%);
+}
+
+/* Hide the scrollbar for Webkit-based browsers */
+.customScrollbar::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Hide the scrollbar for Firefox */
+.customScrollbar {
+  scrollbar-width: thin;
+}
+
+.customScrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}/*# sourceMappingURL=index.module.css.map */

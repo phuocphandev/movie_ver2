@@ -1,0 +1,98 @@
+.booking {
+  background: red !important;
+  color: white;
+}
+
+.booked {
+  background: rgba(128, 128, 128, 0.452) !important;
+  color: white;
+  pointer-events: none;
+}
+
+.chainsawBG {
+  width: 100%;
+  background: rgb(50, 40, 40);
+  background-size: 0px 100%, 9px 27px, 9px 27px;
+}
+
+.allTicket {
+  transform: translateY(450px);
+  transition: transform 2s ease-in-out;
+}
+
+.allTicket.active {
+  transform: translateY(0px);
+}
+
+.ticket {
+  font-size: 1rem;
+  color: black;
+  background-color: white;
+  border-color: rgb(50, 40, 40);
+  padding: 20px;
+  margin: 0 5%;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  border: 5px solid #ab2d95;
+}
+
+.ticket_bottom {
+  background-color: white;
+  margin: 0 5%;
+  border-radius: 0 0 10px 10px;
+  height: 60%;
+  border: 5px solid #ab2d95;
+  border-top: 1px;
+}
+
+.ticket_pole_left {
+  position: absolute;
+  background: rgb(50, 40, 40);
+  height: 12%;
+  width: 10%;
+  bottom: -5px;
+  left: -5px;
+  border-radius: 0 100% 0 0;
+  border-top: 5px solid #ab2d95;
+  border-right: 5px solid #ab2d95;
+}
+
+.ticket_pole_right {
+  position: absolute;
+  background: rgb(50, 40, 40);
+  height: 12%;
+  width: 10%;
+  bottom: -5px;
+  right: -5px;
+  border-radius: 100% 0 0 0;
+  border-top: 5px solid #ab2d95;
+  border-left: 5px solid #ab2d95;
+}
+
+.ticket_pole_leftbot {
+  position: absolute;
+  background: rgb(50, 40, 40);
+  height: 22%;
+  width: 10%;
+  top: 0px;
+  left: -5px;
+  border-radius: 0 0 100% 0;
+  border: 0px none rgb(50, 40, 40);
+  z-index: 1;
+  border-right: 5px solid #ab2d95;
+  border-bottom: 5px solid #ab2d95;
+}
+
+.ticket_pole_rightbot {
+  position: absolute;
+  background: rgb(50, 40, 40);
+  height: 22%;
+  width: 10%;
+  top: 0px;
+  right: -5px;
+  border-radius: 0% 0 0 100%;
+  border: 0px none rgb(50, 40, 40);
+  z-index: 2;
+  border-left: 5px solid #ab2d95;
+  border-bottom: 5px solid #ab2d95;
+}/*# sourceMappingURL=index.module.css.map */

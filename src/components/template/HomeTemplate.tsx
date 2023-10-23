@@ -12,6 +12,7 @@ import { quanLyRapActions } from "store/quanLyRap/slice";
 import { InfoPhim, gioChieu } from "types/QuanLyRap";
 import { LichChieu, LichChieuMobile } from "./ThongTinLichChieu";
 import { MovieList } from "./MovieList";
+import { Introduction } from "./Introduction";
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch();
@@ -105,6 +106,7 @@ export const HomeTemplate = () => {
 
   return (
     <div className=" w-full rounded-sm ">
+      {/* <Introduction/> */}
       <MovieList movieList={movieList} />
       {isFetchingMovieList ? (
         <div></div>

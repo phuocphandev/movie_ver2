@@ -3,7 +3,7 @@ import { generatePath, useNavigate } from "react-router-dom";
 import cn from "classnames";
 import style from "../index.module.scss";
 import { Card } from "components/ui";
-import { ClockCircleOutlined, EyeOutlined, ShoppingOutlined } from "@ant-design/icons";
+import { ClockCircleOutlined, EyeOutlined } from "@ant-design/icons";
 import { Movie } from "types/QuanLyPhim";
 //carousel
 import Carousel from "react-multi-carousel";
@@ -94,22 +94,14 @@ export const MovieList = ({ movieList }: MovieListProps) => {
                     </p>
                   </div>
                   {/* Time road */}
-                  <div className="time flex gap-5 justify-center mt-5 border-t-2 border-[#e91e63] w-[90%] m-auto mb-5 ">
+                  <div className="time flex gap-10 justify-center mt-5 pt-2 border-t-2 border-[#e91e63] w-[90%] m-auto mb-5 ">
                     <div className="flex gap-1 text-xl">
                       <ClockCircleOutlined  className="text-[#e91e63]" />
-                      <p className="font-bold text-[var(--tertiary)]">23H</p>
-                    </div>
-                    <div className="flex">
-                      <img
-                        src="/image/MovieList/calendar.png"
-                        alt="calendar"
-                        className="w-[20px] block"
-                      />
-                      <p className="font-bold text-[var(--tertiary)]">2.5M</p>
+                      <p className="font-bold text-xs text-white flex items-center">2H</p>
                     </div>
                     <div className="flex gap-1 text-xl">
                       <EyeOutlined className="text-[#e91e63] " />
-                      <p className="font-bold text-[var(--tertiary)]">3.2k</p>
+                      <p className="font-bold text-xs text-white flex items-center">3.2k</p>
                     </div>
                   </div>
                   <div className="flex px-5 gap-5">
@@ -122,29 +114,12 @@ export const MovieList = ({ movieList }: MovieListProps) => {
 
                     <button
                       className="bg-[#e91e63] py-2 px-4 rounded text-white  w-[90%] m-auto hover:bg-transparent hover:border-white border border-transparent ease-in-out duration-500 transition-all hover:-translate-y-2"
-                      onClick={() => navigate(detailPath)}
+                      onClick={() => navigate(ticketPath)}
                     >
                       Đặt vé
                     </button>
                   </div>
                 </div>
-
-                {/* <Card.Meta
-                  title={
-                    <p
-                      className="text-blue-500 font-bold"
-                      style={{ whiteSpace: "normal" }}
-                    >
-                      {movie.tenPhim}
-                    </p>
-                  }
-                  description={
-                    <p className="text-red-500 flex justify-center">
-                      {movie.moTa.substring(0, 50)}
-                    </p>
-                  }
-                  style={{ color: "red" }}
-                /> */}
               </Card>
               <div className="">
                 <p
