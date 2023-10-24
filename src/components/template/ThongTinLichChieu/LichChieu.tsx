@@ -18,11 +18,11 @@ export const LichChieu = ({ heThongRap, cumRap, tenCumRapHientai, lichChieuTheoH
   const navigate = useNavigate();
 
   return (
-    <div className="w-[70%] m-auto ">
-      <div className="text-center mt-5 text-white font-bold">
+    <div className="w-[70%] m-auto my-20">
+      <div className="text-center mt-5 text-white font-bold text-2xl">
         THÔNG TIN LỊCH CHIẾU
       </div>
-      <div className="hidden xl:flex bg-white mt-7 rounded-lg text-black ">
+      <div className="hidden xl:flex bg-white mt-7 rounded-lg text-black border-4 border-[#ab2d95]">
         {/* head cua he thong rap */}
         <div className="ml-2 w-[50px] !border-r-4 border-[#ab2d95]">
           {/* phải có border-r-4 trước rồi mới dùng border màu được */}

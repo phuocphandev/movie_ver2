@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSprings, animated, to as interpolate } from "@react-spring/web";
 
 import styles from "./styles.module.css";

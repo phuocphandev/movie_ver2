@@ -25,7 +25,7 @@ const initialState: QuanLyRapInitialState = {
   cumRap: [],
   tenHeThongRapHienTai: "BHDStar",
   DSPhimTheoNgay:[],
-  
+  tenCumRapHientai: "bhd-star-cineplex-3-2",
 
 };
 export const quanLyRapSlice = createSlice({
