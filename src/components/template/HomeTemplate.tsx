@@ -12,7 +12,7 @@ import { quanLyRapActions } from "store/quanLyRap/slice";
 import { InfoPhim, gioChieu } from "types/QuanLyRap";
 import { LichChieu, LichChieuMobile } from "./ThongTinLichChieu";
 import { MovieList } from "./MovieList";
-import { Introduction } from "./Introduction";
+import {Introduction} from "./Introduction/Introduction.jsx"
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch();
