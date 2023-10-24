@@ -1,5 +1,5 @@
 declare type ApiResponse<T> = {
-    statusCode: number
-    message: String
+    status: number
+    message: string
     content:T
 }
