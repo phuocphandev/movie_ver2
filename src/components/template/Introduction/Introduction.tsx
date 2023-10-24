@@ -74,9 +74,9 @@ export const Introduction = () => {
 });
   // Now we're just mapping the animated values to our view, that's it. Btw, this component only renders once. :-)
   return (
-    <div className="relative h-[80vh]  w-screen flex justify-center items-center border border-black">
+    <div className="relative h-[35vh] md:h-[60vh]  w-screen flex justify-center items-center mb-[10vh] ">
       {props.map(({ x, y, rot, scale }, i) => (
-        <animated.div className={styles.deck} key={i} style={{ x, y }}>
+        <animated.div className={`${styles.deck} w-[90%] md:w-[45%] `} key={i} style={{ x, y }}>
           {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
           <animated.div
             {...bind(i)}
