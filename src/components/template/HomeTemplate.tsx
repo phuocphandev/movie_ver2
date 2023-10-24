@@ -106,7 +106,7 @@ export const HomeTemplate = () => {
 
   return (
     <div className=" w-full rounded-sm ">
-      {/* <Introduction/> */}
+      <Introduction/>
       <MovieList movieList={movieList} />
       {isFetchingMovieList ? (
         <div></div>
