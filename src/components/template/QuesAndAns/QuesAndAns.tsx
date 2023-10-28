@@ -35,8 +35,8 @@ export const QuesAndAns = () => {
             </button>
             <div className={`overflow-hidden `}>
               <div
-                className={`overflow-hidden text-xl text-black p-3 transition-all ease-in-out duration-500 ${
-                  sec1 ? "mt-[-100%] md:mt-[-35%]" : "mt-0"
+                className={`overflow-hidden text-xl text-black p-3 transition-all ease-in-out duration-[750ms] md:duration-500 ${
+                  sec1 ? "mt-[-180%] md:mt-[-35%]" : "mt-0"
                 }`}
               >
                 <div className="flex flex-col w-full pl-[10px] pr-[10px] ">
@@ -112,7 +112,7 @@ export const QuesAndAns = () => {
             <div className={`overflow-hidden `}>
               <div
                 className={`overflow-hidden text-xl text-black p-3  transition-all ease-in-out duration-500 ${
-                  sec4 ? "mt-[-100%] md:mt-[-35%]" : "mt-0"
+                  sec4 ? "mt-[-120%] md:mt-[-35%]" : "mt-0"
                 }`}
               >
                 <div className="flex flex-col w-full pl-[10px] pr-[10px] ">
