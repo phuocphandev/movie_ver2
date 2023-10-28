@@ -77,7 +77,6 @@ export const Introduction = () => {
   return (
     <div className="relative h-[35vh] md:h-[60vh]  w-screen flex justify-center items-center mb-[10vh] ">
       {props.map(({ x, y, rot, scale }, i) => {
-        console.log("bind: ", bind(i))
         return (
           <animated.div
             className={`${styles.deck} w-[90%] md:w-[45%] `}

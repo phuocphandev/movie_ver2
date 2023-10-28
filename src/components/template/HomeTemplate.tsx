@@ -115,6 +115,7 @@ export const HomeTemplate = () => {
           heThongRap={heThongRap}
           cumRap={cumRap}
           tenCumRapHientai={tenCumRapHientai}
+          tenHeThongRapHienTai={tenHeThongRapHienTai}
           lichChieuTheoHeThong={lichChieuTheoHeThong}
         />
       )}
@@ -124,6 +125,7 @@ export const HomeTemplate = () => {
         heThongRap={heThongRap}
         cumRap={cumRap}
         tenCumRapHientai={tenCumRapHientai}
+        tenHeThongRapHienTai={tenHeThongRapHienTai}
         lichChieuTheoHeThong={lichChieuTheoHeThong}
       />
     </div>
