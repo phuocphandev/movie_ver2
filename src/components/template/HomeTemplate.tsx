@@ -13,6 +13,7 @@ import { InfoPhim, gioChieu } from "types/QuanLyRap";
 import { LichChieu, LichChieuMobile } from "./ThongTinLichChieu";
 import { MovieList } from "./MovieList";
 import {Introduction} from "./Introduction/Introduction.jsx"
+import QuesAndAns from "./QuesAndAns/QuesAndAns.js";
 
 export const HomeTemplate = () => {
   const dispatch = useAppDispatch();
@@ -105,7 +106,7 @@ export const HomeTemplate = () => {
   }
 
   return (
-    <div className=" w-full rounded-sm ">
+    <div className=" w-full rounded-sm overflow-x-hidden">
       <Introduction/>
       <MovieList movieList={movieList} />
       {isFetchingMovieList ? (
@@ -128,6 +129,8 @@ export const HomeTemplate = () => {
         tenHeThongRapHienTai={tenHeThongRapHienTai}
         lichChieuTheoHeThong={lichChieuTheoHeThong}
       />
+
+      <QuesAndAns/>
     </div>
   );
 };
