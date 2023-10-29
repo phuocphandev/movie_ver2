@@ -1,9 +1,13 @@
-import DetailTemp from "components/template/Detail/DetailTemp"
+import { DetailTempMobile } from "components/template/Detail";
+import DetailTemp from "components/template/Detail/DetailTemp";
 
 const Detail = () => {
   return (
-    <DetailTemp/>
-  )
-}
+    <>
+      <DetailTemp />
+      <DetailTempMobile />
+    </>
+  );
+};
 
-export default Detail
+export default Detail;
